@@ -26,7 +26,7 @@ while True:
 
         #결제금액 한 자리당 1만원해서 프린트
         price = 10000
-        print('예매금액 %d원' %(price*seat_count))
+        print('예매금액 %d원' %(price*seat_count))#문자열 포멧팅 %d는 int값일때 사용한다.
 
         #좌석 번호 프린트
         seat_list =[]
