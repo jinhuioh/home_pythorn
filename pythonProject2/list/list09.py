@@ -11,6 +11,7 @@ sum =0
 for x in range(start2,end2+1):
     sum +=x
 print('사이 수들의 합은 %d' % sum)
-print('평균은~~ %0.1f' % (sum/length))
+print('평균은~~ %f' % (sum/length))
+print('평균은~~ %0.1f' % (sum/length)) #0.1f를 하면 소수점 자리 없애줌
 print('----------------------')
 

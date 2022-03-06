@@ -20,10 +20,9 @@ else:
 #4.target = 55임
 target = random.randint(1,100)
 cnt = 0
-
 while True:
     number = int(input('숫자를 입력~~~ '))
-    cnt += 1
+    # cnt += 1
     if number != target:
         if(number>target):
             print('too big')
