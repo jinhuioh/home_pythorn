@@ -1031,3 +1031,4 @@ for dic in member3141:
     print(dic['gender'])
     gender_list.append(dic['gender'])
 print(gender_list)
+

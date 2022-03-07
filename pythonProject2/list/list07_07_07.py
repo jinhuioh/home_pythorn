@@ -7,3 +7,22 @@
 # 1로 이미 되어있으면 다른 자리를 예약 하도록 하기.
 seat = [0]*10
 while True:
+    #틀 만들기
+    print('')
+    print('=======================')
+    print('영화관 예약 사이트입니다.!')
+    print('=======================')
+    for x in range(0,10):
+        print(x, end=' ')
+    print('')
+    for x in seat:
+        print(x, end=' ')
+    print('')
+    no = int(input('예약좌석을 선택해주세요(종료-1)'))
+    if no == -1:
+        break
+    else :
+        if seat[no] ==0:
+            seat[no] = 1
+        else:
+            print('이미 예약된 좌석입니다.! 다른좌석을 선택해주세요')

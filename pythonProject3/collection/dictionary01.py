@@ -40,7 +40,7 @@ print('---')
 for x in food:
     print(x)#실행해보면 key만 온다.
 
-print('---')
+print('--!!-')
 for key in food:
     print(key, ':', food[key])#실행해보면 key만 온다.
 
