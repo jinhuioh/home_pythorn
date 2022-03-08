@@ -1,7 +1,7 @@
 from inherit.mobile import *
 
-ss = SamsungPhone
-apple = ApplePhone
+ss = SamsungPhone()
+apple = ApplePhone()
 
 ss.name = '홍길동'
 ss.call()
