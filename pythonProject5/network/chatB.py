@@ -9,13 +9,14 @@ import socket#socket이 있어야 네트워크 통신이 가능하다.
 sock1 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock2 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 #AF_INET:IP를 말하는거. SOCK_DGRAM:UTP용 말하는거
-sock2.bind(('192.168.219.101', 3000))#내 아이피와 4000이라는 주소가 생김
+sock2.bind(('192.168.219.101', 3000))#내 아이피와 3000이라는 주소가 생김
 print('192.168.219.101, 3000 port node start!')
 print('--------------------B------------------------')
 while True:
     #b가 a에게 받는 부분
-    data, addr = sock2.recvfrom(1024)
+    data, addr = sock2.recvfrom(1024)#데이터 수신 대기 (최대받을수있는데이터)
     print('간단 채팅B ', data.decode('utf-8'))
 
     data = input('간단채팅B ')
     sock1.sendto(data.encode('utf-8'),('192.168.219.101', 4000))
+    #data를 인코딩하여 서버에게 보낸다.d
