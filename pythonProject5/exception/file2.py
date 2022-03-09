@@ -5,9 +5,9 @@
 # -------------------
 # jin    22      01046935721
 try:
-    file = open('member.txt', 'r')
+    file = open('member.txt', 'r')#readonly
     lines = file.readlines()
-    print('이름\t나이\t연락처')
+    print('이름\t나이\t연락처')#\t : 문자열 사이에 텝 간격을 줄 때 사용.
     print('-----------------------')
     # for _ in range(len(lines)):
     for line in lines:
