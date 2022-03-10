@@ -62,7 +62,7 @@ class DAO:#클래스 안으로 넣어보자.
             sql = "select * from book where id = %s"
 
             # 커서로 sql문을 보냄
-            result = cur.execute(sql, (id))  # 튜플()로 묶은 vo를 넣어주면
+            result = self.cur.execute(sql, (id))  # 튜플()로 묶은 vo를 넣어주면
             # 알아서 하나씩 sql문에 들어감.(%s, %s, %s, %s)여기에 순서대로.
             print('sql문 전송 결과> ', result)#1개 가져왔다고 결과값 나옴. 우리가 원하는 row내용을 주지 않는다.
             #select는 commit할 필요가 없다. read만 하니까!

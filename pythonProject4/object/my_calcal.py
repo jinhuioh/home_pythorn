@@ -40,7 +40,7 @@ if __name__ == '__main__':
     num1_entry.pack()
 
     num2 = Label(w, text = '숫자를입력', font = ('궁서', 30)) #폰트는 튜플
-    num2.pack()#pack을 이용해 num1라는 라벨을w에 넣어줌.
+    num2.pack()#pack을 이용해 num2라는 라벨을w에 넣어줌.
     num2_entry = Entry(w, font= '궁서', bg = 'blue', fg = 'white')
     num2_entry.pack()
 

@@ -31,12 +31,12 @@ def read():
     dao = DAO()
     row = dao.read(id)
     print('검색결과>> ', row)
-    id_entry.insert(0,row)
     name_entry.insert(0,row[1])
     url_entry.insert(0,row[2])
     img_entry.insert(0,row[3])
-window = Tk()
-window.geometry('500x600')
+
+window = Tk()#tkinter인스턴스 생성
+window.geometry('500x600')#창크기
 icon = PhotoImage(file='r7.png')
 top = Label(window, image=icon)
 top.pack()
