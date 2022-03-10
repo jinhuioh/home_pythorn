@@ -1,9 +1,0 @@
-from db.dao_class import *
-
-if __name__ == '__main__':
-    dao = DAO()#__init__()호출함(객체 생성할때 항상 호출됨.)db연결->cursor객체 생성
-# 실제벽돌1 = 벽돌틀()  #새롭게 만든 부품dao 클래스DAO()
-    dao.create()#sql문을 만들어서 전송, 결과 받아오면 됨.
-    vo = input('id,name,url,img 입력>> ').split(',')  # 4개의 값을 리스트로 넣어줌
-    print(vo)
-    dao.create(vo)

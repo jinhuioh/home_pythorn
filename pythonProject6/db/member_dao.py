@@ -1,6 +1,5 @@
 import pymysql
 
-
 def create(vo):
     try:
         conn = pymysql.connect(
