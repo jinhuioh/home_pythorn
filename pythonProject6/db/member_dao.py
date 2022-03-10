@@ -49,7 +49,7 @@ def delete(id):
     except:
         print('db연결 중 에러발생!')
 
-def read():
+def read(id):
     try:
         conn = pymysql.connect(
             # 파라메터 #리턴이 있기 때문에 연결통로역할을 하는 conn을 써준다.
