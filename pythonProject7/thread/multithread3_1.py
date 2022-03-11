@@ -3,7 +3,9 @@ import threading
 import time
 from tkinter import *
 from tkinter import messagebox
-
+# 1.함수호출시: label,x,y 입력값을 넣어줌
+#     def __init__()객체생성시 3개의 입력값을 넣어줌.
+#car가 9개인 경우
 
 class RacingCar:
     #멤버변수
@@ -11,15 +13,16 @@ class RacingCar:
     counter = 0 #클래스 변수 (클래스에서 공유할 목적으로 만든 변수)
 
     #초기화함수
-    def __init__(self, name):
+    def __init__(self, name, label, x1, y1):
         #self: 클래스로 생성한 객체!!
         #c1 = RacingCar('appleCar')#스택영역 변수
         #self == c1
         #c1.name = 'appleCar'
         self.name = name#힙영역변수
 
+
     #멤버함수
-    def runCar(self, label, x1, y1):#멤버변수args=(car_label1, 10, 100)의 값들이  label, x1, y1에 순서대로 들어감.
+    def runCar(self):#멤버변수args=(car_label1, 10, 100)의 값들이  label, x1, y1에 순서대로 들어감.
         while True:#range(10)으로 하면 10번가고 끝나니까 몇번갈지 모르니까 while True로 해준다.
             #랜덤하게 움직일 값을 생성해서
             #램덤생성한 jump값을 기존의 x에 더해준다.
@@ -31,14 +34,14 @@ class RacingCar:
                 RacingCar.counter +=1
 
                 messagebox.showinfo('결과',
-                str(RacingCar.counter)+':'+self.name)
+                str(RacingCar.counter)+':'+str(self.name))
                 break
-            label.place(x=x1, y=y1)
+            self.label.place(x=int(self.x1), y=int(self.y1))
             time.sleep(0.05)
 
     #경주할 수 있는 화면부터 만들어보자.
 
-def run_start():
+def run_start(self):
     #라벨 객체 만들어서 window에 끼워넣어야 함.
     print('call ok!! ')
     # 자동차가 달리는 것처럼 보이는 처리를 스레드로 만들어야 함.
