@@ -8,7 +8,7 @@ from io import BytesIO
 
 #kakao연결 + 신청해놨던 키.
 API_URL = 'https://dapi.kakao.com/v2/vision/multitag/generate'
-MYAPP_KEY = 'e6159dd670c238e3c722998d129c9375'
+MYAPP_KEY = 'e6159dd670c238e3c722998d129c9375'#카카오디벨롭먼트에 내에플리케이션에 restkey
 
 # get:내가 사이트에 입력한 값이 주소에 붙어서 같이감.(노출이 됨).주소로(header부분에 붙어서) 전달되는 값이 따라감.
 #post: 로그인할 때,이미지 데이터 등 입력값이 노출되면 안되는 것들은 body부분에 붙어서 감.
