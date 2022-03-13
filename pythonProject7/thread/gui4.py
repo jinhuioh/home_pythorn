@@ -5,7 +5,7 @@ import turtle
 # color,size가 변하게
 
 def click(x,y):
-    print(x, y)
+    print(x, y)#x,y의 좌표 값
     while True:
         x2 = random.randint(-300, 300)
         y2 = random.randint(-300, 300)

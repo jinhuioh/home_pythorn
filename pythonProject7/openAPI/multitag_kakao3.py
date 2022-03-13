@@ -9,7 +9,7 @@ API_URL = 'https://dapi.kakao.com/v2/vision/multitag/generate'
 MAPPER_KEY = 'a4ea34842d567247008295eb355add44'
 
 def multi_tag(image_url):
-    header = {'Authorization':'KakaoAK %s' % MAPPER_KEY}
+    header = {'Authorization':'KakaoAK %s' % MAPPER_KEY}#포멧팅
     img_data = {'image_url' : image_url}
     response = requests.post(API_URL, headers = header, data= img_data)
     #print(response)

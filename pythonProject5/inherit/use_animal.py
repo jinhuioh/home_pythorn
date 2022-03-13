@@ -6,8 +6,9 @@ d2 = Dog('m2')
 d1.move()
 d1.speak()
 print('@@@',d1.name)
-du1 = Duck('d')
+du1 = Duck('d')#dul1.name은 d가 된다.
 du2 = Duck('d2')
+print('dul1의 이름은',du1.name)
 du1.move()
 du1.speak()
 

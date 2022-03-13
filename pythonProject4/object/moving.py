@@ -1,13 +1,13 @@
 #맴버변수 3개, 멤버함수 3개, 객체 1개만 생성해서, 맴버변수값 넣고 프린트
 #멤버함수 2개 이상호출(리턴x,리턴o)
 class Bike:
-    #멤버변수
+    #멤버변수(클래스변수)
     speed = 0
     size = ''
     shape = ''
 
     def __init__(self,speed, size, shape):
-        self.speed = speed
+        self.speed = speed#self.speed 지역변수
         self.size = size
         self.shape = shape
 
