@@ -3,12 +3,19 @@ import argparse  # api 수정이 필요한 기능을 지원한다.
 from tkinter import messagebox
 import requests  # 알트+엔터(cmd+1)
 from collections import Counter  # 순위 매길때 쓸거.
+from PIL import Image, ImageDraw, ImageFont
+from io import BytesIO
 
 # kakao연결 + 신청해놨던 키.
 API_URL = 'https://dapi.kakao.com/v2/vision/multitag/generate'
 MAPPER_KEY = 'a4ea34842d567247008295eb355add44'
 
-
+# def multi_tag(image_url):
+#     file = {'image': open(img, 'rb')}
+#     header = {'Authorization' : 'KakaoAK %s' % MAPPER_KEY}
+#     response = requests.post(API_URL,
+#                              headers=header,
+#                              files=file)
 def multi_tag(image_url):
     header = {'Authorization': 'KakaoAK %s' % MAPPER_KEY}  # 포멧팅
     img_data = {'image_url': image_url}
@@ -28,6 +35,7 @@ def multi_tag(image_url):
 
     # get은 text를 보낼 때 값이 주소에(header에) 따라붙어 있음
     # //post는 로그인할때 아이디 패스워드 노출 안되도록 주소에 따라갈 수 없게 함(body에 붙음
+
 
 
 if __name__ == '__main__':
@@ -92,6 +100,8 @@ if __name__ == '__main__':
         advertise = '남성 아웃도어 추천'
     elif (order_1[0] == '남성'):
         advertise = '남성인기의류 추천'
+    elif (order_1[0] == '사람' and order_2[0] == '남자'):
+        advertise = '남성인기의류 추천'
     elif (order_1[0] == '사람'):
         advertise = '캐주얼복 추천'
     elif (order_1[0] == '여러사람'):
@@ -103,3 +113,26 @@ if __name__ == '__main__':
     else:
         advertise = '남성 인기 의류'
     messagebox.showinfo('추천>>', '당신에게' + advertise + '를 추천합니다.')
+
+
+
+try:
+    file = open('apifile.txt', 'a')  # 포문을 돌리면 해당파일 자동생성!! a:어팬드 w:실행될때마다 기존에 있던 내용 없앰.
+    print(order_5)
+    for one in order_5:
+        data = one[0] + ',' + str(one[1]) + '\n'
+        file.write(data)
+        print(data)
+
+except FileNotFoundError as f1:
+    print('해당파일을 찾을 수 없음')
+    print(f1)
+except IOError:
+    print('읽고쓰는데 문제가 생김')
+except:
+    print('파일을 처리하는데 문제가 생김')
+finally:
+    try:
+        file.close()
+    except:
+        print('파일을 closing하는데 문제가 생김')
