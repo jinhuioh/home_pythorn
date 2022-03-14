@@ -1,5 +1,10 @@
 import sys  # 파이썬 인터프리터가 제공하는 시스템 특화된 함수나 변수를 제공해줌.
 import argparse  # api 수정이 필요한 기능을 지원한다.
+from tkinter import messagebox, PhotoImage
+import random
+import threading
+import time
+from tkinter import *
 from tkinter import messagebox
 import requests  # 알트+엔터(cmd+1)
 from collections import Counter  # 순위 매길때 쓸거.
@@ -65,7 +70,7 @@ if __name__ == '__main__':
         ,'https://search.pstatic.net/common/?src=http%3A%2F%2Fimgnews.naver.net%2Fimage%2F5604%2F2019%2F10%2F13%2F0000015063_001_20191013174606042.jpg&type=l340_165'
         ,'https://search.pstatic.net/common/?src=http%3A%2F%2Fimgnews.naver.net%2Fimage%2F052%2F2020%2F06%2F29%2F202006291004117181_d_20200629100704972.jpg&type=a340'
         ,'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA2MjBfMTQ3%2FMDAxNjI0MTI5OTE3NDI3.dxNXqvZGU7QVhH9S8oOhPlQvqIAP7KQDp4-HyT3a_qog.j07MBAUcDuEz547OWgybmuQALN3ThKp9BNTK8zNdG6kg.JPEG.kyongil1228%2Fbandicam_2021-06-20_02-01-54-229.jpg&type=l340_165'
-        ]
+    ]
 
     result_list = []
     for img in img_list:
@@ -93,29 +98,79 @@ if __name__ == '__main__':
     # print('그 다음으로 빈도수가 높은 단어는', order_1[2], '빈도수는', order_1[3])
     # 제일 빈도수가 높은 단어는 사람 빈도수는 x
 
+    #창을 띄어 봅시다.
+    window = Tk()
+    window.geometry('700x700')
+    window.title('남성복 추천')
     advertise = ''
+    #이미지 파일 생성
+    shopping_img1 = PhotoImage(file='img.png')
+    shopping_img2 = PhotoImage(file='img_1.png')
+    shopping_img3 = PhotoImage(file='img_2.png')
+    shopping_img4 = PhotoImage(file='casual.png')
+    shopping_img5 = PhotoImage(file='pants.png')
+    shopping_img6 = PhotoImage(file='sport.png')
+
+
+    #라벨 생성
+    car_label1 = Label(window, image=shopping_img1)
+    car_label2 = Label(window, image=shopping_img2)
+    car_label3 = Label(window, image=shopping_img3)
+    car_label4 = Label(window, image=shopping_img4)
+    car_label5 = Label(window, image=shopping_img5)
+    car_label6 = Label(window, image=shopping_img6)
+  # pack을 이용해 label에 넣어줌
+
     if (order_1[0] == '남성' and order_2[0] == '바지'):
         advertise = '남성복 하의 추천'
+        shopping_img = shopping_img1
+        s1 = Label(window, image=shopping_img1)
+        s1.pack()  # pack을 이용해 label에 넣어줌
+
     elif (order_1[0] == '남성' and order_2[0] == '스포츠'):
         advertise = '남성 아웃도어 추천'
+        shopping_img = shopping_img2
+        s2 = Label(window, image=shopping_img2)
+        s2.pack()
     elif (order_1[0] == '남성'):
         advertise = '남성인기의류 추천'
+        shopping_img = shopping_img3
+        s3 = Label(window, image=shopping_img3)
+        s3.pack()
     elif (order_1[0] == '사람' and order_2[0] == '남자'):
         advertise = '남성인기의류 추천'
+        shopping_img = shopping_img3
+        s3 = Label(window, image=shopping_img3)
+        s3.pack()
     elif (order_1[0] == '사람'):
         advertise = '캐주얼복 추천'
+        shopping_img = shopping_img4
+        s4 = Label(window, image=shopping_img4)
+        s4.pack()
     elif (order_1[0] == '여러사람'):
         advertise = '캐주얼복 추천'
+        shopping_img = shopping_img4
+        s4 = Label(window, image=shopping_img4)
+        s4.pack()
     elif (order_1[0] == '바지'):
         advertise = '남성복 바지'
+        shopping_img = shopping_img5
+        s5 = Label(window, image=shopping_img5)
+        s5.pack()
     elif (order_1[0] == '스포츠'):
         advertise = '스포츠도어'
+        shopping_img = shopping_img6
+        s6 = Label(window, image=shopping_img6)
+        s6.pack()
     else:
         advertise = '남성 인기 의류'
+        shopping_img = shopping_img3
+        s3 = Label(window, image=shopping_img3)
+        s3.pack()
     messagebox.showinfo('추천>>', '당신에게' + advertise + '를 추천합니다.')
 
-
-
+    window.mainloop()
+#파일에 count5까지 세서(5순위까지) 저장해보자!!
 try:
     file = open('apifile.txt', 'a')  # 포문을 돌리면 해당파일 자동생성!! a:어팬드 w:실행될때마다 기존에 있던 내용 없앰.
     print(order_5)
