@@ -22,7 +22,7 @@ def multi_tag(image_url):
     json_result = response.json()#json을 써줘야 스트링 값(response)을 key,value형태로 구분해 컴퓨터가 인식할 수 있다.
     # print(json_result)
     result = json_result['result']
-    # print(result)
+    print('결과는', result)
     label_kr = result['label_kr']#json_result에서 label_kr key의 value를 꺼내온다.
     print(label_kr)
     return label_kr#리스트 리턴

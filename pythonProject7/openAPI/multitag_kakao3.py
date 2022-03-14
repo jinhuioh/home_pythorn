@@ -13,12 +13,12 @@ def multi_tag(image_url):
     header = {'Authorization': 'KakaoAK %s' % MAPPER_KEY}  # 포멧팅
     img_data = {'image_url': image_url}
     response = requests.post(API_URL, headers=header, data=img_data)
-    # print(response)
+    print(response)
 
     json_result = response.json()
     print(json_result)
     result = json_result['result']
-    print('result는>>> ', result)
+   # print('result는>>> ', result)
     label_kr = result['label_kr']
     print('label_kr는>>>> ', label_kr)
     return label_kr  # 리스트
@@ -71,20 +71,35 @@ if __name__ == '__main__':
     # print(Count_result.most_common(3))
     # [('사람', 3), ('여러사람', 3), ('남성', 2)]
     order_5 = Count_result.most_common(5)  # 5위까지 순위나옴.
-    print('튜플을 분리해서 많이 나온 단어 프린트', order_5[0])  # 튜플을 분리해서 1번쩨 많이 나온 단어 프린트
+    print('튜플을 분리해서 1번째로 많이 나온 단어 프린트', order_5[0])  # 튜플을 분리해서 1번쩨 많이 나온 단어 프린트
+    print('튜플을 분리해서 2번째로 많이 나온 단어 프린트', order_5[1])  # 튜플을 분리해서 2번쩨 많이 나온 단어 프린트
+    print('튜플을 분리해서 3번째로 많이 나온 단어 프린트', order_5[2])  # 튜플을 분리해서 3번쩨 많이 나온 단어 프린트
+    print('튜플을 분리해서 4번째로 많이 나온 단어 프린트', order_5[3])  # 튜플을 분리해서 4번쩨 많이 나온 단어 프린트
+    print('튜플을 분리해서 5번째로 많이 나온 단어 프린트', order_5[4])  # 튜플을 분리해서 5번쩨 많이 나온 단어 프린트
     # print(order_5[2])
     # ('사람', 3)
-    order_1 = order_5[0]
-    order_2 = order_5[1]
+    order_1 = order_5[0]#튜플 첫번째: ('사람', 20)
+    order_2 = order_5[1]#튜플 두번째: ('남성', 16)
+    print('order_2는!',order_2)
     print('제일 빈도수가 높은 단어는', order_1[0], '빈도수는', order_1[1])
     # print('그 다음으로 빈도수가 높은 단어는', order_1[2], '빈도수는', order_1[3])
     # 제일 빈도수가 높은 단어는 사람 빈도수는 x
 
     advertise = ''
-    if (order_1[0] == '남성' or order_1[0] == '스포츠') and (order_2[0] == '남성' or order_2[0] == '스포츠'):
-        advertise = '운동용품 추천'
-    elif (order_1[0] == '남성' or order_1[0] == '바지') and (order_2[0] == '남성' or order_2[0] == '바지'):
-        advertise = '남성복 추천'
+    if (order_1[0] == '남성' and order_2[0] == '바지'):
+        advertise = '남성복 하의 추천'
+    elif (order_1[0] == '남성' and order_2[0] == '스포츠'):
+        advertise = '남성 아웃도어 추천'
+    elif (order_1[0] == '남성'):
+        advertise = '남성인기의류 추천'
+    elif (order_1[0] == '사람'):
+        advertise = '캐주얼복 추천'
+    elif (order_1[0] == '여러사람'):
+        advertise = '캐주얼복 추천'
+    elif (order_1[0] == '바지'):
+        advertise = '남성복 바지'
+    elif (order_1[0] == '스포츠'):
+        advertise = '스포츠도어'
     else:
-        advertise = '일반 광고 추천'
-        messagebox.showinfo('추천>>', '당신에게' + advertise + '를 추천합니다.')
+        advertise = '남성 인기 의류'
+    messagebox.showinfo('추천>>', '당신에게' + advertise + '를 추천합니다.')
