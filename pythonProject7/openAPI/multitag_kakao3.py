@@ -172,10 +172,10 @@ if __name__ == '__main__':
     window.mainloop()
 #파일에 count5까지 세서(5순위까지) 저장해보자!!
 try:
-    file = open('apifile.txt', 'a')  # 포문을 돌리면 해당파일 자동생성!! a:어팬드 w:실행될때마다 기존에 있던 내용 없앰.
-    print(order_5)
+    file = open('apifile.txt', 'w')  # 포문을 돌리면 해당파일 자동생성!! a:어팬드 w:실행될때마다 기존에 있던 내용 없앰.
+    print(order_5)#리스트안에 튜플이 들어간 형태.
     for one in order_5:
-        data = one[0] + ',' + str(one[1]) + '\n'
+        data = one[0] + ',' + str(one[1]) + '\n'#튜플은 스플릿 쓸 수 없다.   vo = input('id,name,url,img 입력>> ').split(',') 리스트는 가능.
         file.write(data)
         print(data)
 

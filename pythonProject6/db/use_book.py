@@ -11,7 +11,7 @@ from db.dao import *
 if __name__ == '__main__':#여기서부터 시작이니까 첫 실행은 여기서 하면 됨.
     choice = input('crud중 선택 1)c 2)u 3)d, 4)r(one) 5)r(all) >> ')
     if choice == '1':
-        vo = input('id,name,url,img 입력>> ').split(',')#4개의 값을 리스트로 넣어줌
+        vo = input('id,name,url,img 입력>> ').split(',')#4개의 값을 리스트로 넣어줌#튜플은 split쓸 수 없다.
         # id = input('id입력>> ')
         # name = input('name입력>> ')
         # url = input('url입력>> ')

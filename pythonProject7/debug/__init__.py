@@ -9,11 +9,13 @@
 # print("[1,2,'banana'] 을 넣으면",bool([1,2,"banana"]))
 # print("{} 을 넣으면",bool({}))
 
-a=1
-def vartest(b):
-    b = b + 1
-    return b
+# a=1
+# def vartest(b):
+#     b = b + 1
+#     return b
+#
+# a = vartest(a)#a가 vartest함수의 결괏값으로 바뀐다.
+# print(a)#2가 나온다.
 
-a = vartest(a)#a가 vartest함수의 결괏값으로 바뀐다.
-print(a)#2가 나온다.
-
+a=input()
+a
