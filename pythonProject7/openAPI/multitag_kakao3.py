@@ -60,16 +60,6 @@ if __name__ == '__main__':
         'https://search.pstatic.net/common/?src=http%3A%2F%2Fimgnews.naver.net%2Fimage%2F111%2F2017%2F03%2F03%2F1488509306487_1_114946_99_20170303133303.jpg&type=a340'
         ,
         'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxNzAzMjZfOTkg%2FMDAxNDkwNTE0MzYxNTUw.BASFdatZXdK5s2PXe6uaaJQMp9rtCaHyUVYXwHAAilAg.PxWMrYung8nuGxP7ujX-Dq-eKQcC3WVD2QsseatB09Qg.PNG.youngahs74%2Fnoname101.png&type=a340'
-        ,'https://i.ytimg.com/vi/eUG-YshYozo/maxresdefault.jpg'
-        ,'https://www.bing.com/images/blob?bcid=S.Sv2BAjBO0DqxcxoNWLuD9SqbotqVTdP7g'
-        ,'https://image.chosun.com/sitedata/image/201902/10/2019021001722_0.jpg'
-        ,'https://th.bing.com/th/id/OIP.LVEffhzLh-cUypWBvLo1DwHaE8?pid=ImgDet&rs=1'
-        ,'https://search.pstatic.net/common/?src=http%3A%2F%2Fimgnews.naver.net%2Fimage%2F109%2F2022%2F03%2F13%2F0004571683_001_20220313232603665.png&type=a340'
-        ,'https://search.pstatic.net/common/?src=http%3A%2F%2Fimgnews.naver.net%2Fimage%2F5415%2F2022%2F03%2F13%2F0000172793_001_20220313201202829.png&type=a340'
-        ,'https://search.pstatic.net/common/?src=http%3A%2F%2Fimgnews.naver.net%2Fimage%2F609%2F2021%2F10%2F04%2F202110031627510010_1_20211004055332761.jpg&type=l340_165'
-        ,'https://search.pstatic.net/common/?src=http%3A%2F%2Fimgnews.naver.net%2Fimage%2F5604%2F2019%2F10%2F13%2F0000015063_001_20191013174606042.jpg&type=l340_165'
-        ,'https://search.pstatic.net/common/?src=http%3A%2F%2Fimgnews.naver.net%2Fimage%2F052%2F2020%2F06%2F29%2F202006291004117181_d_20200629100704972.jpg&type=a340'
-        ,'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA2MjBfMTQ3%2FMDAxNjI0MTI5OTE3NDI3.dxNXqvZGU7QVhH9S8oOhPlQvqIAP7KQDp4-HyT3a_qog.j07MBAUcDuEz547OWgybmuQALN3ThKp9BNTK8zNdG6kg.JPEG.kyongil1228%2Fbandicam_2021-06-20_02-01-54-229.jpg&type=l340_165'
     ]
 
     result_list = []

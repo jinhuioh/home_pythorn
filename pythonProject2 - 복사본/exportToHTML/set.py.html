@@ -1,0 +1,43 @@
+<html>
+<head>
+<title>set.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #808080;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #cc7832;}
+.s3 { color: #6a8759;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+set.py</font>
+</center></td></tr></table>
+<pre><span class="s0">#중복을 제거하고 싶을 때</span>
+<span class="s2">import </span><span class="s1">random</span>
+
+<span class="s1">food_list = [</span><span class="s3">'감자'</span><span class="s2">,</span><span class="s3">'감자'</span><span class="s2">,</span><span class="s3">'고구마'</span><span class="s1">]</span>
+<span class="s1">food_list2 = set(food_list)</span>
+<span class="s1">print(food_list2)</span>
+<span class="s1">food_list3 = list(food_list2)</span>
+<span class="s1">print(food_list3)</span>
+
+<span class="s1">food_list4 = set()</span>
+<span class="s1">food_list4.add(</span><span class="s3">'coffee'</span><span class="s1">)</span>
+<span class="s1">food_list4.add(</span><span class="s3">'coffee'</span><span class="s1">)</span><span class="s0">#중복 제거되어 프린트하면 커피가 한개만 나옴</span>
+<span class="s1">food_list4.add(</span><span class="s3">'water'</span><span class="s1">)</span>
+<span class="s1">print((food_list4))</span>
+<span class="s1">print(</span><span class="s3">'--------'</span><span class="s1">)</span>
+<span class="s1">food_list5 = list(food_list4)</span>
+<span class="s1">print(food_list5)</span>
+
+<span class="s1">number_list = set()</span>
+<span class="s2">for </span><span class="s1">_ </span><span class="s2">in </span><span class="s1">range(</span><span class="s4">1000</span><span class="s1">):</span>
+    <span class="s1">number_list.add(random.randint(</span><span class="s4">1</span><span class="s2">, </span><span class="s4">1001</span><span class="s1">))</span>
+<span class="s1">print(number_list)</span><span class="s0">#중복되지 않은 값들 프린트</span>
+<span class="s1">print(len(number_list))</span><span class="s0">#중복된 값 빼고 중복되지 않은 값들의 길이</span></pre>
+</body>
+</html>
