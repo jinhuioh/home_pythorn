@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        td {
+            text-align: center;
+        }
+
+        .c1 {
+            background: chartreuse;
+        }
+    </style>
+</head>
+<body>
+<h3>글 작성</h3>
+<a href="/question">question시작 페이지로!</a>
+{#post방식으로 해줘야한다.get지원하지않음.#}
+<form action="/question/write2" method="post">
+    {# 토큰 으로 너무 많은 양과 잘못된 접근에 대해 차단해주는 기능을 한다.#}
+    {#승인된 유저에 한해 토큰을 주고 해당유저만 접근 가능#}
+    {% csrf_token %}
+    <table border="1">
+        <tr>
+            <td width="100" class="c1">항목</td>
+            <td width="200">입력</td>
+        </tr>
+        <tr>
+            <td width="100" class="c1">글쓰기</td>
+            <td width="200">
+                <input type="text" name="question_text">
+            </td>
+        </tr>
+        <tr>
+            <td width="100" class="c1">글쓴이</td>
+            <td width="200">
+                <input type="text" name="question_writer">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button style="background: pink">글쓰기 작성</button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

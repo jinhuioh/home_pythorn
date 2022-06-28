@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        td {
+            text-align: center;
+        }
+
+        .c1 {
+            background: chartreuse;
+        }
+    </style>
+</head>
+<body>
+<h3>회원검색(개인) 작성</h3>
+<a href="/member">회원정보 시작 페이지로!</a>
+{#post방식으로 해줘야한다.get지원하지않음.#}
+<form action="/member/one2" method="post">
+    {# 토큰 으로 너무 많은 양과 잘못된 접근에 대해 차단해주는 기능을 한다.#}
+    {#승인된 유저에 한해 토큰을 주고 해당유저만 접근 가능#}
+    {% csrf_token %}
+    <table border="1">
+        <tr>
+            <td width="100" class="c1">검색할 아이디</td>
+            <td width="200">입력</td>
+        </tr>
+        <tr>
+            <td width="100" class="c1">검색할 아이디</td>
+            <td width="200">
+                <input type="text" name="id">
+            </td>
+        </tr>
+        <td colspan="2">
+            <button style="background: pink">검색아이디 작성</button>
+        </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

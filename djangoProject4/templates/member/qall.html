@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            text-align: center;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        .c1 {
+            background: lightcoral;
+            width: 150px;
+            height: 30px;
+        }
+
+        button {
+            background: limegreen;
+        }
+    </style>
+</head>
+<body>
+{# {{ qall }}이 딕셔너리 key값이다. key를 넣어주면 value값이 브라우저에 출력된다. #}
+<h3>글 전체 검색 결과 {{ qall }}</h3>
+<hr color="skyblue">
+{# template언어 foreach문과 비슷#}
+{% for one in qall %}
+<table border="1">
+    <tr>
+        <td width="100" class="c1">아이디</td>
+        <td width="200">
+            {{ one.id }}
+        </td>
+    </tr>
+    <tr>
+        <td width="100" class="c1">글내용</td>
+        <td width="200">
+            {{ one.question_text }}
+        </td>
+    </tr>
+    <tr>
+        <td width="100" class="c1">글쓴이</td>
+        <td width="200">
+            {{ one.question_writer }}
+        </td>
+    </tr>
+    <tr>
+        <td class="c1">글정보페이지로</td>
+        <td width="200">
+            <a href="/question">
+                <button>글정보페이지로</button>
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td class="c1">글정페이지로</td>
+        <td width="200">
+            <a href="/question/qup/{{ one.id }}">
+                <button>글수정페이지로</button>
+            </a>
+        </td>
+    </tr>
+</table>
+    <hr color="lightpink">
+{% endfor %}
+</body>
+</html>
