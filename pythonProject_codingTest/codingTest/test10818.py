@@ -15,6 +15,7 @@ list1 = []
 #키 벨류 형태의 map으로 input으로 받은 값들을, 모두 공백으로 잘라, 각각 int로 형변환해주자.
 list1 = list(map(int, input().split(" ")))
 # 처음 값으로 n_max. n_min을 지정
+# list1의 값중에 최대 최소값을 n_max, n_min으로 지정
 n_max = max(list1)
 n_min = min(list1)
 
