@@ -17,6 +17,10 @@
 # 평균을 넘는 학생수를 count한 후 전체로 나누어줘 비율 측정
 # 비율을 반올림하여 소수점 셋째 자리까지 출력 print()
 
+# filter함수를 적용시켜보자.
+# filter(function, iterator)
+# 첫 번째 매개변수로는 필터링을 적용시킬 함수가 오고두 번째 매개변수로는 반복 가능한 값들이 들어오게 됩니다.
+# 출처: https://blockdmask.tistory.com/532
 
 # 입력할 테스트 케이스의 수 C 객체 생성
 C = int(input())
