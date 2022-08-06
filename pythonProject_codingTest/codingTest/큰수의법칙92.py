@@ -7,3 +7,53 @@
 
 #3개의 값 한줄로 입력받기
 N, M, K = map(int,input().split())
+# N개의 수 입력받기. list로 한번에 N개 담음
+data = list(map(int,input().split()))
+print(data)
+
+# 큰수부터 M번 더하고, K초과 중복 안됨
+#   i 값 중 가장 큰 값을 찾아보자.
+# 값 중복 없에고 내림차준으로 정렬해서 차례대로 큰 수 더하기
+
+def set_list(x):
+    set_data = set(x)
+    sorted_data = sorted(set_data, reverse=True)#내림차순
+    # print(sorted_data)
+    return sorted_data
+result1 = 0
+result2 = 0
+i =0
+for i in range(K):
+    if M==0:
+        break
+    if M<2:
+        sum_data = set_list(data)[i]
+        result1 += sum_data
+        print('result1', result1)
+        print('i1', i)
+        M -= 1
+    else:
+        sum_data = set_list(data)[i]
+        result2 = sum_data*K
+        print('result2', result2)
+        print('i2',i)
+        M = M-K
+print(result1+result2)
+
+# i=0
+# t=0
+# n=0
+# # M번 더함. K번 초과안함
+# while i<M+1:
+#     if i>M:
+#         break
+#     sum_data = set_list(data)[i]
+#     print('set: ', sum_data)
+#     i = i+1
+# sum_data += sum_data
+# print('setLast: ', sum_data)
+#
+#
+#
+
+
