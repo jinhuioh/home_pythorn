@@ -23,20 +23,26 @@ def set_list(x):
 result1 = 0
 result2 = 0
 i =0
+# M의 크기에 따라 다르게 계산
 for i in range(K):
     if M==0:
         break
     if M<2:
+        # sum_data는 i번째 큰 수
         sum_data = set_list(data)[i]
+        # i번째 큰 수를 result1로 지정
         result1 += sum_data
         print('result1', result1)
         print('i1', i)
+        # M에서 1빼줌
         M -= 1
-    else:
+    else:# M이 3이상인경우
         sum_data = set_list(data)[i]
+        # K개수를 i번째 큰 수에 곱한것을 result2객체에 넣음
         result2 = sum_data*K
         print('result2', result2)
         print('i2',i)
+        # M에서 K개수만큼 빼줌
         M = M-K
 print(result1+result2)
 
