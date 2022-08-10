@@ -13,19 +13,20 @@
 # N과K를 입력받자
 n, k = map(int, input().split())
 i=0
-for i in range(n):
-    # n=1이면 break
-    if n == 1:
-        # print('n1',n)
-        break
-    # n을 k로 나누었을때 나머지가 0이면 n/k를 n에 덮어씌우기(2번)
-    elif n%k == 0:
-        i += 1
-        n = n/k
-        # print('n2',n)
-    # n을 k로 나눌수 없는 경우 -1 연산(1번)
-    else :
-        i += 1
-        n = n-1
-        # print('n3',n)
+if (2<=n<=100000)&(2<=k<=100000):
+    while n<=k:
+        # n=1이면 break
+        if n == 1:
+            # print('n1',n)
+            break
+        # n을 k로 나누었을때 나머지가 0이면 n/k를 n에 덮어씌우기(2번)
+        elif n%k == 0:
+            i += 1
+            n = n/k
+            # print('n2',n)
+        # n을 k로 나눌수 없는 경우 -1 연산(1번)
+        else :
+            i += 1
+            n = n-1
+            # print('n3',n)
 print('최소 실행 횟수: ',i)
