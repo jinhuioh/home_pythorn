@@ -3,7 +3,7 @@
 n= int(input())
 x, y = 1, 1
 plans = input().split()
-
+print('plans', plans)
 # LRUD에 대한 이동방향
 dx = [0, 0, -1, 1]
 dy = [-1, 1, 0, 0]
