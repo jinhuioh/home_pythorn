@@ -7,3 +7,25 @@
 # 나이트의 위치가 주어졌을 때 나이트가 이동할 수 있는 경우의 수를 출력하는 프로그램을 작성하시오.
 # 행위치는 1부터8로 표현, 열 위치는 a부터h로 표현한다.
 
+# 현재위치
+move = input()
+count = 0
+x = [1,2,3,4,5,6,7,8]
+word = ['a','b','c','d','e','f','g','h']
+step = [(-2,1),(-2,-1),(2,-1),(2,1),(1,2),(1,-2),(-1,2),(-1,-2)]
+for i in range(len(word)):
+    if move[0] == word[i]:
+        nx = int(x[i])
+print('nx',nx)
+nx2 = int(move[1])
+move_one = (nx,nx2)
+for step_one in step:
+    moveStep0 = move_one[0] + step_one[0]
+    moveStep1 = move_one[1] + step_one[1]
+    print('movestep0',moveStep0)
+    print('movestep1',moveStep1)
+    if moveStep0 > 0 and moveStep1 > 0:
+        count+=1
+        print(count)
+
+print(count)
