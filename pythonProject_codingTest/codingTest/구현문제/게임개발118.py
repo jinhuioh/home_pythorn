@@ -33,3 +33,50 @@ x,y,direction = map(int,input().split())
 d[x][y] = 1
 
 # 전채 맵 정보를 입력받기
+array = []
+for i in range(n):
+    array.append(list(map(int, input().split())))
+
+# 북동남서 방향 정의
+dx = [-1,0,1,0]#북쪽이면 캐릭터좌표가(-1,0)만큼 이동
+dy = [0,1,0,-1]#동쪽이면 (0,1)만큼 이동
+
+# 왼쪽으로 회전
+def turn_left():
+    #  direction인 지역변수를 global함수를 통해 전역변수로 사용
+    global direction
+    direction -= 1# 캐릭터가 왼쪽으로 이동하면서 동북서남방향으로 돌아가기 때문에 -1씩해주면서 돌아감
+    if direction == -1:
+        direction = 3# 무한으로 돌도록 함
+# 시물레이션 시작
+count = 1
+turn_time = 0
+while True:
+    # 왼쪽으로 회전
+    turn_left()
+    nx = x + dx[direction]#이동 후 x좌표
+    ny = y + dx[direction]#이동 후 y좌표
+    # 회전한 이후 정면에 가보지 않은 칸이 존재하는 경우 이동
+    if d[x][y] == 0 and array[nx][ny] == 0:
+        d[nx][ny] = 1
+        x = nx #이동좌표를 원래 좌표에 덮어씌어 x가 이동하게 함
+        y = ny #이동좌표를 원래 좌표에 덮어씌어 y가 이동하게 함
+        count += 1
+        turn_time = 0
+        continue#이건 왜있는거야?
+#     회전한 이후 정면에 가보지 않은 칸이 없거나 바다인 경우
+    else:
+        turn_time += 1
+#     4방향 모두 갈 수 없는 경우
+    if turn_time == 4: #4번 다 돌았으면 뒤로 가기
+#       뒤로 갈 수 있다면 이동
+        nx = x - dx[direction]  # 이동 후 x좌표
+        ny = y - dx[direction]  # 이동 후 y좌표
+        if array[nx][ny] == 0:
+           x = nx
+           y = ny
+#       뒤로 바다인경우
+        else:
+            break
+        turn_time = 0
+print(count)
