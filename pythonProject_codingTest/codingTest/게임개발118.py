@@ -22,23 +22,14 @@
 # 출력조건
 # 첫째 줄에 이동을 마친 후 캐릭터가 방문한 칸의 수를 출력한다.
 
-# 매트릭스 크기 입력
-size = (input().split())
-# 게임캐릭터가 있는 좌표와 방향 입력
-one = (input().split())
-# 매트릭스 속성 m*n 입력
-data = [list(map(int,input().split())) for _ in range(int(size[1]))]
-a=int(one[0])#상하
-b=int(one[1])#좌우
-print(data[0])
-dx = [0, 0, -1, 1]
-dy = [-1, 1, 0, 0]
-d = [0 ,1, 2, 3]
-# 0 ,1, 2, 3 = 북,동,남,서
-if int(one[3]) == d[0]:
-    if b == 0:
-        b = b + 1
-    else:
+# n,m을 공백으로 구분하여 입력받기
+n,m = map(int,input().split())#n=행,m=열
 
-    
+# 방문한 위치를 저장하기 위한 맵을 생성하여 0으로 초기화
+d = [[0]*m for _ in range(n)]# m개의0이 n줄 있는 초기 매트릭스 생성
+# 현재 캐릭터들의 x,y좌표, 방향을 입력받기
+x,y,direction = map(int,input().split())
+# 현재 좌표 방문처리
+d[x][y] = 1
 
+# 전채 맵 정보를 입력받기
