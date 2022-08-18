@@ -65,7 +65,7 @@ while True:
         y = ny #이동좌표를 원래 좌표에 덮어씌어 y가 이동하게 함
         count += 1
         turn_time = 0
-        continue#이거 왜 하는지 모르겠음
+        # continue#이거 왜 하는지 모르겠음
 #     회전한 이후 정면에 가보지 않은 칸이 없거나 바다인 경우 좌표 이동
     else:
         turn_time += 1
