@@ -48,6 +48,7 @@ def turn_left():
     direction -= 1# 캐릭터가 왼쪽으로 이동하면서 동북서남방향으로 돌아가기 때문에 -1씩해주면서 돌아감
     if direction == -1:
         direction = 3# 무한으로 돌도록 함
+
 # 시물레이션 시작
 count = 1
 turn_time = 0
@@ -56,15 +57,16 @@ while True:
     turn_left()
     nx = x + dx[direction]#이동 후 x좌표
     ny = y + dx[direction]#이동 후 y좌표
-    # 회전한 이후 정면에 가보지 않은 칸이 존재하는 경우 이동
+
+    # 회전한 이후 정면에 가보지 않은 칸이 존재 하는 경우 이동
     if d[x][y] == 0 and array[nx][ny] == 0:
         d[nx][ny] = 1
         x = nx #이동좌표를 원래 좌표에 덮어씌어 x가 이동하게 함
         y = ny #이동좌표를 원래 좌표에 덮어씌어 y가 이동하게 함
         count += 1
         turn_time = 0
-        continue#이건 왜있는거야?
-#     회전한 이후 정면에 가보지 않은 칸이 없거나 바다인 경우
+        continue#이거 왜 하는지 모르겠음
+#     회전한 이후 정면에 가보지 않은 칸이 없거나 바다인 경우 좌표 이동
     else:
         turn_time += 1
 #     4방향 모두 갈 수 없는 경우
