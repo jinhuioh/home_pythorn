@@ -9,18 +9,37 @@
 #출력조건
 # 00시 00분 00초부터 n시 59분 59초까지의 모든 시각 중에서 3이 하나라도 포함되는 모든 경우의 수를 출력한다.
 
-# # n입력받기
+# 방법: 시부터 초까지 3을 포함하는 수는 전부 세고 for문으로 넘긴다.
+# 시간 입력받기
 n = int(input())
-# count 할 객체
-num = 0
-# i는 시간
-for i in range(n+1):
-    # j는 분
-    for j in range(60):
-        # k는 초
-        for k in range(60):
-            # 문자중에 3이 하나라도 있으면 num+1
-            if '3' in str(i) + str(j) + str(k):
-                num += 1
-                # print(str(i) + str(j) + str(k))
-print(num)
+# 시분초에 들어갈 객체
+a,b,c,result = 0,0,0,0
+
+# 3이 포함되어 있으면 모두 세라고 했으므로
+# 각 for문을 돌려 000000시부터 n5959까지 시간 조합을 모두 한 다음 각 a,b,c를 str로 만들어 합치고 3이 있으면 result+=1을 해준다.
+# 3이 하나라도 포함되는 = 문자화해서 3이 있는지 체크하자.
+for a in range(n):
+    for b in range(60):
+        for c in range(60):
+            if '3' in str(a)+str(b)+str(c):
+                result += 1
+print(result)
+
+
+#
+#
+# # # n입력받기
+# n = int(input())
+# # count 할 객체
+# num = 0
+# # i는 시간
+# for i in range(n+1):
+#     # j는 분
+#     for j in range(60):
+#         # k는 초
+#         for k in range(60):
+#             # 문자중에 3이 하나라도 있으면 num+1
+#             if '3' in str(i) + str(j) + str(k):
+#                 num += 1
+#                 # print(str(i) + str(j) + str(k))
+# print(num)
