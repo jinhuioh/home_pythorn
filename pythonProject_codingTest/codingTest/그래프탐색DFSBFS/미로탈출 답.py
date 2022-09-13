@@ -18,38 +18,40 @@
 
 # 선입선출로 입구와 출구가 터널 형태로 되어있는 문제는 queue 함수를 이용한다.
 from collections import deque
-
-# 행렬입력받기
-n,m = map(int, input().split())
+# 행렬 입력받기
+n, m = map(int, input().split())
+# 그래프 모양 입력받기
 graph = []
 for i in range(n):
-    graph.append(list(map(int,input())))
-
-# 이동할 4가지 방향 정의
-dx = [-1,1,0,0]#좌우
-dy = [0,0,-1,1]#상하
-
-# 함수구현
-def miro(x,y):
-    # 큐 구현을 위해 deque라이브러리 사용
+    graph.append(list(map(int, input())))
+# 이동할 수 있는 좌우/상하 좌표
+dx = [-1, 1, 0, 0]
+dy = [0, 0, -1, 1]
+# bfs함수화
+def bfs(x, y):
+    # 시작 위치 입력받기
     queue = deque()
     queue.append((x,y))
     while queue:
-        # popleft()로 맨 앞 원소 1개씩 빼내기.
+        # while문을 통해 입력받은 위치를 차례대로 꺼냄
         x,y = queue.popleft()
-        # 현재 위치에서 4가지 방향으로 위치 확인
+        # 갈 수 있는 좌표를 선택하기 위해 상하좌우 4번 좌표를 이동시킴
         for i in range(4):
-            nx = x + dx[i]
+            nx = x + dx[i]# 서있는 좌표x에서 좌우로 dx[i]만큼 이동
             ny = y + dy[i]
-            if nx <0 or nx >= n or ny <0 or ny >= m:
+            # 매트릭스를 넘어가면 continue로 넘기기
+            if nx == -1 or nx == n or ny == -1 or ny == m:
                 continue
-            # 괴물이 있는 경우 무시
+            # 0이면 괴물이 있으므로 continue로 넘기기
             if graph[nx][ny] == 0:
                 continue
-            # 해당 노드를 처음 방문하는 경우에만 최단 거리 기록
+            # 갈 수 있는 좌표인 경우
             if graph[nx][ny] == 1:
-                graph[nx][ny] = graph[x][y] + 1
-                queue.append((nx,ny))
-            # 가장 오른쪽 아래까지의 최단 거리 반환
-        return graph[n-1][m-1]
-print(miro(0,0))
+                # 큐에 갈 수 있는 좌표 append
+                # 이동한 좌표를 서있는 좌표로 변경
+                queue.append((nx, ny))
+                # 한칸씩 이동하므로 +1로 크기를 키운다.
+                graph[nx][ny] = graph[x][y]+1
+    # 해당 함수의 리턴은 매트릭스의 마지막 좌표인 [n-1][m-1] 
+    return graph[n-1][m-1]
+print(bfs(0,0))
