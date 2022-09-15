@@ -52,6 +52,6 @@ def bfs(x, y):
                 queue.append((nx, ny))
                 # 한칸씩 이동하므로 +1로 크기를 키운다.
                 graph[nx][ny] = graph[x][y]+1
-    # 해당 함수의 리턴은 매트릭스의 마지막 좌표인 [n-1][m-1] 
+    # 해당 함수의 리턴은 매트릭스의 마지막 좌표인 [n-1][m-1]
     return graph[n-1][m-1]
 print(bfs(0,0))
