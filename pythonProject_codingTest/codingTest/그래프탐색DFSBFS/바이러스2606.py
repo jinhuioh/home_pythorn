@@ -20,19 +20,19 @@ print('visited',visited)
 for _ in range(m):#연결된 컴퓨터 쌍의 개수 입력
     i,j = map(int, input().split())#2개씩 입력 받을 때 왼쪽i,오른쪽j
     graph[i].append(j)#i번째 행에 j번째 열을 생성
-    print('graph i append j',graph)
     if i not in graph[j]:
         graph[j].append(i)
+        print('graph i append j',graph)
 print('graph',graph)
 
-def dfs(n):
+def dfs(n):#1부터 시작하므로 n=1을 넣을 예정
     # 현재 컴퓨터에 방문처리
-    visited[n] = True
+    visited[n] = True#1번 방문처리
     print('visitedTrue', visited)
     # 연결되어 있는 컴퓨터 하나씩 방문
-    for i in graph[n]:
-        if not visited[i]:
-            dfs(i)
+    for i in graph[n]:#1번째 리스트에 담긴 (1과 연결된 수들)이 차례대로 i가 되어 for문을 돌도록 함
+        if not visited[i]:#1과 연결된 컴퓨터들도 방문처리
+            dfs(i)#재귀적으로 1과 연결된 컴퓨터들이 dfs함수를 돌도록 구현
 dfs(1)
 count =-1
 for i in visited:
