@@ -6,6 +6,40 @@
 # 피벗 데이터 기준 뒤에서 부터(마지막부터) 탐색하면서 피벗보다 작은 값이 있는지 확인
 # 위에 말한 두 값의 위치를 변경
 # 만약 앞,뒤로 가는 인덱스가 겹치는 경우
+array = [7,5,9,0,3,1,2,4,8]
+
+def quick(array):
+    if len(array) <=1:
+        return array
+    pivot = array[0]#피벗데이터 설정
+    tail = array[1:]
+    left_one = []
+    right_one = []
+    for i in range(len(tail)):
+
+        if tail[i] < pivot:
+            left_one.append(tail[i])
+            print('11 ', left_one)
+        else:
+            right_one.append(tail[i])
+            print('22 ',right_one)
+    return quick(left_one)+[pivot]+quick(right_one)
+
+print(quick(array))
+
+
+
+def quick_sort(array):
+    if len(array)<=1:
+        return array
+    pivot = array[0]
+    tail = array[1:]
+    left_side = [x for x in tail if x <= pivot]
+    right_side = [x for x in tail if x> pivot]
+    # 리턴 값을 재귀적으로 quick_sort()함수로 주어 피벗을 기점으로 오른쪽 원소들과 왼쪽 원소들이 1개가 남을 때까지 함수를 도는 것을 알 수 있다.
+    return quick_sort(left_side)+[pivot]+quick_sort(right_side)
+print(quick_sort(array))
+
 
 # 일반적인 방법
 array = [7,5,9,0,3,1,2,4,8]
