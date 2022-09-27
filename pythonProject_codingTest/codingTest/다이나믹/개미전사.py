@@ -19,8 +19,8 @@ n = int(input())
 k = list(map(int, input().split()))
 # 초기화한 0으로 이루어진 리스트(최적의 해를 d에 넣을것이기 때문에 최대 101개까지 0을 생성한다.
 d = [0]*101
-d[1] = k[0]
-d[2] = max(k[0], k[1])
-for i in range(n):
+d[0] = k[0]
+d[1] = max(k[0], k[1])
+for i in range(2,n):#n-1까지만 연산하면 되므로 2부터 n까지 range한다.(d의 인덱스가 0부터 시작하므로)
     d[i] = max(d[i-1], d[i-2]+k[i])
 print(d[n-1])#n-1까지만 하는 이유는 k의 인덱스가 0부터 시작하기 때문이다.
