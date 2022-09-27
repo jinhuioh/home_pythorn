@@ -36,3 +36,4 @@ if result == None:
     print("찾는원소가 없습니다.")
 else:
     print(result+1)#인덱스가0부터 시작하므로 +1을 해주어 1부터 시작하는것으로 바꿔주자.
+
