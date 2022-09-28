@@ -15,12 +15,58 @@
 # 2n 인덱스를 선택할지 2n-1인덱스를 선택할지 반복적으로 작업해야하고, 최적의 해를 구해야하므로 다이나믹 알고리즘을 사용해보자.
 
 # 식량창고 개수 n입력받기
+#
+# n = int(input())
+# k = list(map(int, input().split()))
+#
+# d = [0]*101
+# d1 = [0]*101
+# d[0] = k[0]
+# for i in range(2,n):
+#     d[i] = max(d[i-1], d[i-2]+k[i])
+#     print(d)
+# print(d[n-1])
+
+# d_even = 0
+# d_odd = 0
+# for i in range(1,n):
+#     if i%2 == 0:
+#         d[i] = k[i]
+#         d_even = sum(d)
+#     else:
+#         d1[i] = k[i]
+#         d_odd = sum(d1)
+# if d_odd > d_even:
+#     print('창고털기!! ',d_odd)
+# else:
+#     print('창고털기!! ',d_even)
+
+#
+# n = int(input())
+# k = list(map(int, input().split()))
+# # 초기화한 0으로 이루어진 리스트(최적의 해를 d에 넣을것이기 때문에 최대 101개까지 0을 생성한다.
+# d = [0]*101
+# d[0] = k[0]
+# d[1] = max(k[0], k[1])
+# for i in range(2,n):#n-1까지만 연산하면 되므로 2부터 n까지 range한다.(d의 인덱스가 0부터 시작하므로)
+#     d[i] = max(d[i-1], d[i-2]+k[i])
+# print(d[n-1])#n-1까지만 하는 이유는 k의 인덱스가 0부터 시작하기 때문이다.
+
+
+# 위에 풀이의 문제점... 1 3 1 5 9 를 넣으면 11이 나와야 하는데 12가 나옴...
+# 아래 개인적인 풀이를 적어본다.
+# 짝수번째 인덱스의 숫자합과 홀수번째 인덱스의 숫자합을 비교하여 출력하는 방식으로 계산
 n = int(input())
-k = list(map(int, input().split()))
-# 초기화한 0으로 이루어진 리스트(최적의 해를 d에 넣을것이기 때문에 최대 101개까지 0을 생성한다.
-d = [0]*101
-d[0] = k[0]
-d[1] = max(k[0], k[1])
-for i in range(2,n):#n-1까지만 연산하면 되므로 2부터 n까지 range한다.(d의 인덱스가 0부터 시작하므로)
-    d[i] = max(d[i-1], d[i-2]+k[i])
-print(d[n-1])#n-1까지만 하는 이유는 k의 인덱스가 0부터 시작하기 때문이다.
+
+array = list(map(int, input().split()))
+
+d = [0] * 100
+
+d[0] = array[0]
+d[1] = array[1]
+
+for i in range(2, n):
+    d[i] = (d[i-2] + array[i])
+    print(d)
+
+print(max(d[n-1],d[n-2]))
