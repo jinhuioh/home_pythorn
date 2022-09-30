@@ -42,37 +42,17 @@
 
 # 접근법: 클때만 등수가 높아지므로 (그 외에는 중복되므로) 클때만 등수를 조정해주는 for문으로 문제를 풀자.
 # 각 값을 비교해야 하므로 하나의 값을 선택하고 나머지 인덱스 값과 비교하는 이중 for문으로 접근하자.
+# 나는 처음에 키와 몸무게를 각각 리스트를 만들어서 다시 넣어줬는데 이중리스트나 튜플을 이용하면 이러한 복잡성을 없앨 수 있다.
 # 인원수와 키 몸무게를 튜플로 입력받자.
 n = int(input())
 people = []
 for i in range(n):
     x,y = (map(int, input().split()))
     people.append((x,y))
-print(people)
+# print(people)
 for i in people:
     rank = 1#초기값
     for j in people:
         if i[0] < j[0] and i[1] < j[1]:# i 가 만약 (88, 186)라면 j가 i보다 크면 i의 rank를 키워준다.
             rank += 1
     print(rank, end = " ")
-
-
-
-
-
-
-# 각 키와 몸무게를 다른 리스트에 넣고 인덱스를 이용하여 값을 비교해보자.
-# for i in range(n):
-#     if w[i] == max(w) and h[i] == max(h):
-#         count = 1
-#         d[i]  = count# 등수 1씩 증가
-#         count += 1
-#     elif w[i] == max(w) or h[i] == max(h):
-#         d[i] = count
-#     else:
-#         count += 1
-#         d[i] = count
-# print('d',d)
-# print(w,'\n',h)
-
-# 1번째 값을 1로 두고 다음인덱스 값이랑 비교해서 만약 작으면 change
