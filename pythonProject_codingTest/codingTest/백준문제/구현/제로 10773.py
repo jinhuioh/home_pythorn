@@ -16,4 +16,24 @@
 # 정수가 "0"일 경우에 지울 수 있는 수가 있음을 보장할 수 있다.
 #
 # 출력
-# 재민이가 최종적으로 적어 낸 수의 합을 출력한다. 최종적으로 적어낸 수의 합은 231-1보다 작거나 같은 정수이다.
+# 재민이가 최종적으로 적어 낸 수의 합을 출력한다. 최종적으로 적어낸 수의 합은 2^31-1보다 작거나 같은 정수이다.
+
+# 예
+# 4
+# 3
+# 0
+# 4
+# 0
+# 출력: 0
+import time
+k = int(input())
+num_list1 = []
+num_list = []
+for i in range(k):
+    num_list1.append(int(input()))
+for i in range(k):
+    if num_list1[i] !=0:
+        num_list.append(num_list1[i])
+    else:
+        num_list.pop()
+print(sum(num_list))
