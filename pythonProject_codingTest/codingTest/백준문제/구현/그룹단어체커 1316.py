@@ -12,36 +12,6 @@
 # 출력
 # 첫째 줄에 그룹 단어의 개수를 출력한다.
 
-# n = int(input())
-# list1 = []
-# for i in range(n):
-#     list1.append('*'+(input()))
-# print(list1)
-# result = n
-#
-# for one in list1:
-#     for i in range(1,len(one)):
-#         #one에는 happy, year등이 담긴다.
-#         #i에는 h,a,p,p,y등이 각각 담긴다.
-#         if one[i] == one[i-1]:
-#             print(i,'번째랑 i-1이 같을때,one[i]',one[i])
-#             print(i-1,'번째랑 i이 같을때,one[i-1]',one[i-1])
-#             # result += 1
-#             print('result더해주기',result)
-#             pass
-#         for j in range(i+1,len(one)):
-#             # if one[i] == one[i-1]:
-#             #     print(i,'번째랑 i-1이 같을때,one[i]',one[i])
-#             #     print(i-1,'번째랑 i이 같을때,one[i-1]',one[i-1])
-#             #     result += 1
-#             #     print('result더해주기',result)
-#             if one[i] == one[j]:
-#                 print(i,'번째 단어가 j번째랑 같을때>> ',one[i])
-#                 print(j,'번째 단어가 j번째랑 같을때, one[j]>>>',one[j])
-#                 result -= 1
-#                 print('result빼주기',result)
-#
-# print(result)
 
 N = int(input())
 cnt = N
