@@ -12,20 +12,36 @@
 # 출력
 # 첫째 줄에 그룹 단어의 개수를 출력한다.
 
-
-N = int(input())
-cnt = N
-
-for i in range(N):
-    word = input()
-    for j in range(0, len(word)-1):
-        if word[j] == word[j+1]:
-            pass
-        elif word[j] in word[j+1:]:
-            cnt -= 1
+n = int(input())
+result = n
+for i in range(n):
+    word = list(input())
+    for k in range(len(word)-1):
+        if word[k] == word[k+1]:
+            print('k와 k+1이 같을때: ',word[k],word[k+1])
+            continue
+        elif word[k] in word[k+1:]:
+            print('elif문: ', word[k], word[k+1:])
+            result -= 1
             break
 
-print(cnt)
+print(result)
+
+
+
+# N = int(input())
+# cnt = N
+#
+# for i in range(N):
+#     word = input()
+#     for j in range(0, len(word)-1):
+#         if word[j] == word[j+1]:
+#             pass
+#         elif word[j] in word[j+1:]:
+#             cnt -= 1
+#             break
+#
+# print(cnt)
 
 
 
