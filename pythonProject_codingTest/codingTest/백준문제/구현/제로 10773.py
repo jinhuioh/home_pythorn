@@ -27,13 +27,19 @@
 # 출력: 0
 import time
 k = int(input())
-num_list1 = []
-num_list = []
+num_list1 = []#입력값을 담을 리스트
+num_list = []#입력값을 담은 리스트 값 중 최종적으로 더할 값만 넣을 리스트
 for i in range(k):
-    num_list1.append(int(input()))
+    num_list1.append(int(input()))# 입력값 리스트에 저장
+
 for i in range(k):
-    if num_list1[i] !=0:
+    if num_list1[i] != 0:#입력값에 저장 된 값 중 0이 아니면 최종 더할 값에 넣기
         num_list.append(num_list1[i])
-    else:
+    else:#0이면 이전 값 지우기(remove쓰면 인덱스가 달라지는데 리스트 길이가 줄어들어 인덱스 오류가 난다.)
         num_list.pop()
-print(sum(num_list))
+print(sum(num_list))#최종적으로 더한 값 프린트
+
+## 오류 고치기 
+## num_list에 input받아서 받을 때마다 0인지 아닌지 처리해서 sum구하는 방법으로 풀었는데, 
+## 입력받는 시간이 있다보니 시간초과 오류나서
+## num_list1에 입력값 전부 받고, num_list에 처리할 값 넣는걸로 나누어 처리함! => 시간초과 없앰
