@@ -39,38 +39,42 @@
 # 5
 
 k = int(input())
-list_nm = []
-list_imp = []
-list_idx = []
+list_nm = []#문서의 개수 n과 몇번째 인쇄 값이 궁금한지 나타내는 m값을 담을 리스트
+list_imp = []#중요도 입력받을 리스트
+list_idx = []#입력받은 중요도의 인덱스를 담을 리스트
 for i in range(k):
     n,m = list(map(int, input().split(" ")))
     list_nm.append(m)
     list_imp.append(list(map(int, input().split(" "))))
     list_idx.append(list(range(len(list_imp[i]))))
-    list_idx[i][m] = 'target'
-print(list_nm)
-print(list_imp)
-print(list_idx)
+    list_idx[i][m] = 'target' #(인덱스에서 m번째 값을 target으로 지정)
 for x in range(k):
-    count = 0
+    count = 0 #카운트는 for문을 돌때마다 초기화 해준다.
     while True:
-        print('시작list_imp[x]',list_imp[x])
-        print('시작list_idx[x]',list_idx[x])
+        #첫번째 값이 최대값인데 해당값의 index가 target(우리가 답으로 출력해야 할 값)인 경우
         if list_imp[x][0] == max(list_imp[x]) and list_idx[x][0] == 'target':
+            #최대값인 경우 첫번째 값(최대값)을 제거
             list_imp[x].pop(0)
+            #인덱스도 맞춰줘야 하기 때문에 같이 제거
             list_idx[x].pop(0)
+            #제거했으므로 count+=1(m번째 값을 출력했을 때, 몇번째 출력인지 구해야하므로 최대값을 없앨때마다 카운트를 증가시켜준다.)
             count += 1
-            print('답count ',count)
+            #답 출력
+            print(count)
+            #답이 나왔으므로 break로 while문을 멈춰준다. 다음 x에 대해 while문을 실행시킨다.
             break
+        # 0번째 값이 최대값이지만 index가 target은 아닌경우
         elif list_imp[x][0] == max(list_imp[x]):
+            # 각 첫번째 값 제거 후 count+=1을 해준다.
             list_imp[x].pop(0)
             list_idx[x].pop(0)
             count += 1
-            print('count',count)
         else:
+            # 0번째 값이 최대값도 아니고, index가 target도 아닌 경우
+            # 각 0번째 값을 append로 마지막에 붙여준다.
+            # 그 후 0번째 값을 지워준다.
+            # 0번째 값을 먼저 지우고 append를 실행하면 list_imp[x][0]값이 이미 지워서 두번째 값이 들어가므로 오류가 발생한다. 주의하자!!
             list_imp[x].append(list_imp[x][0])
             list_idx[x].append(list_idx[x][0])
             list_imp[x].pop(0)
             list_idx[x].pop(0)
-            print('list_imp[x]',list_imp[x])
-            print('list_idx[x]',list_idx[x])
