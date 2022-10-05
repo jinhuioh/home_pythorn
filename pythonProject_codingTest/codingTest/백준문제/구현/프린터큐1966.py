@@ -38,47 +38,109 @@
 # 2
 # 5
 
-### 문제 풀었을때 느낀점
-### 리스트에서 값을 꺼내고 없애고 옮기는 문제는
-### pop함수 또는 queue를 이용하는게 좋을 것 같다.
-### 값을 지우는 과정에서 index가 계속 변하기 때문에 잘생각하고 로직을 짜야할 것 같다.
+## 최신 수정
+## 아래와 같은 방법으로 풀면(pop(0), insert(0,x)등 사용) 무작위 접근에 최적화된 자료인 list에 의해
+## 시간복잡도가 o(n) = 선형시간(n이커질때 n에 비례해서 연산횟수 증가)이 되므로 비효율적이다.
+
+## deque의 popleft()와 appendleft(x)메서드는 모두 O(1)의 시간복잡도로 매우 효율적으로 문제를 해결할 수 있다.
+# appendleft(x) = append(list_imp[x][0])와 같은 효과로 첫번째 인덱스에 원소를 입력할 수 있다.
+from collections import deque
+
 k = int(input())
-list_nm = []#문서의 개수 n과 몇번째 인쇄 값이 궁금한지 나타내는 m값을 담을 리스트
-list_imp = []#중요도 입력받을 리스트
-list_idx = []#입력받은 중요도의 인덱스를 담을 리스트
+n_index = []
+n_num = []
+n_imp = []
+# queue_num = deque()
+# queue_index = deque()
+# queue_imp = deque()
+
 for i in range(k):
-    n,m = list(map(int, input().split(" ")))
-    list_nm.append(m)
-    list_imp.append(list(map(int, input().split(" "))))
-    list_idx.append(list(range(len(list_imp[i]))))
-    list_idx[i][m] = 'target' #(인덱스에서 m번째 값을 target으로 지정)
-for x in range(k):
-    count = 0 #카운트는 for문을 돌때마다 초기화 해준다.
-    while True:
-        #첫번째 값이 최대값인데 해당값의 index가 target(우리가 답으로 출력해야 할 값)인 경우
-        if list_imp[x][0] == max(list_imp[x]) and list_idx[x][0] == 'target':
-            #최대값인 경우 첫번째 값(최대값)을 제거
-            list_imp[x].pop(0)
-            #인덱스도 맞춰줘야 하기 때문에 같이 제거
-            list_idx[x].pop(0)
-            #제거했으므로 count+=1(m번째 값을 출력했을 때, 몇번째 출력인지 구해야하므로 최대값을 없앨때마다 카운트를 증가시켜준다.)
-            count += 1
-            #답 출력
-            print(count)
-            #답이 나왔으므로 break로 while문을 멈춰준다. 다음 x에 대해 while문을 실행시킨다.
-            break
-        # 0번째 값이 최대값이지만 index가 target은 아닌경우
-        elif list_imp[x][0] == max(list_imp[x]):
-            # 각 첫번째 값 제거 후 count+=1을 해준다.
-            list_imp[x].pop(0)
-            list_idx[x].pop(0)
-            count += 1
-        else:
-            # 0번째 값이 최대값도 아니고, index가 target도 아닌 경우
-            # 각 0번째 값을 append로 마지막에 붙여준다.
-            # 그 후 0번째 값을 지워준다.
-            # 0번째 값을 먼저 지우고 append를 실행하면 list_imp[x][0]값이 이미 지워서 두번째 값이 들어가므로 오류가 발생한다. 주의하자!!
-            list_imp[x].append(list_imp[x][0])
-            list_idx[x].append(list_idx[x][0])
-            list_imp[x].pop(0)
-            list_idx[x].pop(0)
+    m, n = map(int, input().split())
+    n_num.append(n)
+    n_imp.append(list(map(int, input().split())))
+    n_index.append(list(l for l in range(len(n_imp[i]))))
+    n_index[i][n] = "t"
+print(n_index)
+print(n_imp)
+
+def printerQueue(n_imp,n_index):
+    for x in range(k):
+        n_impX = n_imp[x]
+        n_indexX = n_index[x]
+        count = 0# 프린트 수 초기화
+        queue_imp = deque()
+        queue_index = deque()
+        queue_imp = deque(n_impX)# 큐 초기화 하여
+        queue_index = deque(n_indexX)# 큐 초기화 하여
+        while queue_imp:# queue_imp에 대해 while문 돌리기
+            # 첫번째 인덱스 수 꺼내기
+            a = (queue_imp.popleft())
+            b = queue_index.popleft()
+            print('ab>> ',type(a),type(b),a,b)
+            #정답일시
+            if a == max(n_impX) and b == "t":
+                count+=1
+                print('답!! ',count)
+                break
+            #찾고있는 target은 아니지만 max값인 경우
+            elif a == max(n_impX):
+                # n_imp에서 최대값 삭제
+                n_impX.remove(a)
+                n_indexX.remove(b)
+                count+=1
+                print('count 증가 시키고 최대값 지우기',count)
+            #target도 max도 아닌경우
+            else:
+                queue_imp.append(a)
+                queue_index.append(b)
+                print('else append', queue_imp)
+                print('else append',queue_index)
+
+printerQueue(n_imp,n_index)
+
+
+
+
+# ### 문제 풀었을때 느낀점
+# ### 리스트에서 값을 꺼내고 없애고 옮기는 문제는
+# ### 값을 지우는 과정에서 index가 계속 변하기 때문에 잘생각하고 로직을 짜야할 것 같다.
+# k = int(input())
+# list_nm = []#문서의 개수 n과 몇번째 인쇄 값이 궁금한지 나타내는 m값을 담을 리스트
+# list_imp = []#중요도 입력받을 리스트
+# list_idx = []#입력받은 중요도의 인덱스를 담을 리스트
+# for i in range(k):
+#     n,m = list(map(int, input().split(" ")))
+#     list_nm.append(m)
+#     list_imp.append(list(map(int, input().split(" "))))
+#     list_idx.append(list(range(len(list_imp[i]))))
+#     list_idx[i][m] = 'target' #(인덱스에서 m번째 값을 target으로 지정)
+# for x in range(k):
+#     count = 0 #카운트는 for문을 돌때마다 초기화 해준다.
+#     while True:
+#         #첫번째 값이 최대값인데 해당값의 index가 target(우리가 답으로 출력해야 할 값)인 경우
+#         if list_imp[x][0] == max(list_imp[x]) and list_idx[x][0] == 'target':
+#             #최대값인 경우 첫번째 값(최대값)을 제거
+#             list_imp[x].pop(0)
+#             #인덱스도 맞춰줘야 하기 때문에 같이 제거
+#             list_idx[x].pop(0)
+#             #제거했으므로 count+=1(m번째 값을 출력했을 때, 몇번째 출력인지 구해야하므로 최대값을 없앨때마다 카운트를 증가시켜준다.)
+#             count += 1
+#             #답 출력
+#             print(count)
+#             #답이 나왔으므로 break로 while문을 멈춰준다. 다음 x에 대해 while문을 실행시킨다.
+#             break
+#         # 0번째 값이 최대값이지만 index가 target은 아닌경우
+#         elif list_imp[x][0] == max(list_imp[x]):
+#             # 각 첫번째 값 제거 후 count+=1을 해준다.
+#             list_imp[x].pop(0)
+#             list_idx[x].pop(0)
+#             count += 1
+#         else:
+#             # 0번째 값이 최대값도 아니고, index가 target도 아닌 경우
+#             # 각 0번째 값을 append로 마지막에 붙여준다.
+#             # 그 후 0번째 값을 지워준다.
+#             # 0번째 값을 먼저 지우고 append를 실행하면 list_imp[x][0]값이 이미 지워서 두번째 값이 들어가므로 오류가 발생한다. 주의하자!!
+#             list_imp[x].append(list_imp[x][0])
+#             list_idx[x].append(list_idx[x][0])
+#             list_imp[x].pop(0)
+#             list_idx[x].pop(0)
