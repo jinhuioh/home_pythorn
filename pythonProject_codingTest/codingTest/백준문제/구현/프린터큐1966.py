@@ -44,15 +44,13 @@
 
 ## deque의 popleft()와 appendleft(x)메서드는 모두 O(1)의 시간복잡도로 매우 효율적으로 문제를 해결할 수 있다.
 # appendleft(x) = append(list_imp[x][0])와 같은 효과로 첫번째 인덱스에 원소를 입력할 수 있다.
+
 from collections import deque
 
 k = int(input())
 n_index = []
 n_num = []
 n_imp = []
-# queue_num = deque()
-# queue_index = deque()
-# queue_imp = deque()
 
 for i in range(k):
     m, n = map(int, input().split())
@@ -60,9 +58,6 @@ for i in range(k):
     n_imp.append(list(map(int, input().split())))
     n_index.append(list(l for l in range(len(n_imp[i]))))
     n_index[i][n] = "t"
-print(n_index)
-print(n_imp)
-
 def printerQueue(n_imp,n_index):
     for x in range(k):
         n_impX = n_imp[x]
@@ -73,31 +68,73 @@ def printerQueue(n_imp,n_index):
         queue_imp = deque(n_impX)# 큐 초기화 하여
         queue_index = deque(n_indexX)# 큐 초기화 하여
         while queue_imp:# queue_imp에 대해 while문 돌리기
-            # 첫번째 인덱스 수 꺼내기
             a = (queue_imp.popleft())
             b = queue_index.popleft()
-            print('ab>> ',type(a),type(b),a,b)
-            #정답일시
             if a == max(n_impX) and b == "t":
                 count+=1
-                print('답!! ',count)
+                print(count)
                 break
-            #찾고있는 target은 아니지만 max값인 경우
             elif a == max(n_impX):
-                # n_imp에서 최대값 삭제
                 n_impX.remove(a)
                 n_indexX.remove(b)
                 count+=1
-                print('count 증가 시키고 최대값 지우기',count)
-            #target도 max도 아닌경우
             else:
                 queue_imp.append(a)
                 queue_index.append(b)
-                print('else append', queue_imp)
-                print('else append',queue_index)
-
 printerQueue(n_imp,n_index)
 
+
+# from collections import deque
+#
+# k = int(input())
+# n_index = []
+# n_num = []
+# n_imp = []
+#
+# for i in range(k):
+#     m, n = map(int, input().split())
+#     n_num.append(n)
+#     n_imp.append(list(map(int, input().split())))
+#     n_index.append(list(l for l in range(len(n_imp[i]))))
+#     n_index[i][n] = "t"
+# print(n_index)
+# print(n_imp)
+#
+# def printerQueue(n_imp,n_index):
+#     for x in range(k):
+#         n_impX = n_imp[x]
+#         n_indexX = n_index[x]
+#         count = 0# 프린트 수 초기화
+#         queue_imp = deque()
+#         queue_index = deque()
+#         queue_imp = deque(n_impX)# 큐 초기화 하여
+#         queue_index = deque(n_indexX)# 큐 초기화 하여
+#         while queue_imp:# queue_imp에 대해 while문 돌리기
+#             # 첫번째 인덱스 수 꺼내기
+#             a = (queue_imp.popleft())
+#             b = queue_index.popleft()
+#             print('ab>> ',type(a),type(b),a,b)
+#             #정답일시
+#             if a == max(n_impX) and b == "t":
+#                 count+=1
+#                 print('답!! ',count)
+#                 break
+#             #찾고있는 target은 아니지만 max값인 경우
+#             elif a == max(n_impX):
+#                 # n_imp에서 최대값 삭제
+#                 n_impX.remove(a)
+#                 n_indexX.remove(b)
+#                 count+=1
+#                 print('count 증가 시키고 최대값 지우기',count)
+#             #target도 max도 아닌경우
+#             else:
+#                 queue_imp.append(a)
+#                 queue_index.append(b)
+#                 print('else append', queue_imp)
+#                 print('else append',queue_index)
+#
+# printerQueue(n_imp,n_index)
+#
 
 
 

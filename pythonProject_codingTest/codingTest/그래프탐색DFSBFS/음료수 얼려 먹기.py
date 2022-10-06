@@ -15,8 +15,38 @@
 # 모든 노드에 대해 위에 방법 반복 그리고 지점의 수를 카운트
 # #
 
-# dfs함수 만들기
-# dfs로 특정 노드를 방문하고 연결된 모든 노드들도 연결
+n,m = map(int(input().split()))
+graph = []
+for i in range(n):
+    graph.append(list(map(int,input())))
+
+def ice(x,y):#x가 열(가로), y가 행(세로)
+    if x<0 or x>m or y<0 or y>n:
+        return False
+    if graph[y][x] == 0:
+        graph[y][x] == 1
+        ice(x+1,y)
+        ice(x-1,y)
+        ice(x,y+1)
+        ice(x,y-1)
+        return True
+    return False
+result =0
+for a in range(n):
+    for b in range(m):
+        if ice(a,b) == True:
+            result+=1
+
+print(result)
+
+
+
+
+
+
+#
+# # dfs함수 만들기
+# # dfs로 특정 노드를 방문하고 연결된 모든 노드들도 연결
 def dfs(x,y):
     #     주어진 범위를 벗어나는 경우 종료
     if x<=-1 or x>=n or y <=-1 or y>=m:
@@ -51,5 +81,29 @@ for i in range(n):#행
         # 현재 위치에서 dfs 수행
         #dfs()함수가 True인 경우에 대해 result값을 증가시킨다.
         if dfs(i,j) == True:
+            result +=1
+print(result)
+
+
+
+n,m = map(int, input().split())
+graph = []
+for i in range(n):
+    graph.append(list(map(int, input())))
+def ice(x,y):
+    if x <= -1 or x >= n or y <= -1 or y >= m:
+        return False
+    if graph[x][y] == 0:
+        graph[x][y] == 1
+        ice(x-1, y)
+        ice(x, y-1)
+        ice(x+1, y)
+        ice(x, y+1)
+        return True
+    return False
+result = 0
+for i in range(n):
+    for j in range(m):
+        if ice(i,j) == True:
             result +=1
 print(result)

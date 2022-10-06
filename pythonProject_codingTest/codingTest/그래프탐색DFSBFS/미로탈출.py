@@ -12,30 +12,73 @@
 # 각각 수들은 공백 없이 입력으로 제시됩니다. 또한 시작 칸과 마지막 칸은 항상 1입니다.
 # 출력조건: 첫째 줄에 최소 이동 칸의 개수를 출력합니다.
 # ##
-
-# 너비를 계산하여 최단거리를 찾아보자
-def miro(x,y):
-    if x <= -1 or x >= n or y <= -1 or y >= m:
-        return False
-    # 괴물이 없는 길인 경우
-    if graph[x][y] == 1:
-        # 최단거리를 가기위해 괴물이 있는 칸으로 바꾼다.
-        graph[x][y] = 0
-        # 재귀함수로 처리하여 아래 행으로 한 칸 옮기면서 최단거리 계산
-        miro(x,y+1)
-        return True
-    return False
-
-# 행렬입력받기
-n,m = map(int, input().split())
+from collections import deque
+n,m = map(int,input().split())#세로가로입력
 graph = []
 for i in range(n):
     graph.append(list(map(int,input())))
+print(graph)
 
-result = 0
+dx = [0,0,-1,1]
+dy = [-1,1,0,0]
+def bfs(x,y):#x는 가로 y는 세로
+    # 상하좌우에 대해 for문 돌리기
+    queue = deque()
+    queue.append((x,y))
+    while queue:
+        print('queue',queue)
+        x,y = queue.popleft()
+        for k in range(4):
+            nx = x + dx[k]
+            ny = y + dy[k]
+            if nx < 0 or nx >= m or ny < 0 or ny >= n:
+                continue
+            if graph[ny][nx] == 0:
+                continue
+            if graph[ny][nx] == 1:
+                graph[ny][nx] = graph[y][x] + 1
+                queue.append((nx,ny))
+    return graph[n-1][m-1]
+print(bfs(0,0))
 
-for a in range(n):
-    for b in range(m):
-        if miro(a,b) == True:
-            result +=1
-print(result)
+
+# bfs(0,0)으로 시작해야함
+
+
+
+
+
+
+
+
+
+
+
+
+
+# # 너비를 계산하여 최단거리를 찾아보자
+# def miro(x,y):
+#     if x <= -1 or x >= n or y <= -1 or y >= m:
+#         return False
+#     # 괴물이 없는 길인 경우
+#     if graph[x][y] == 1:
+#         # 최단거리를 가기위해 괴물이 있는 칸으로 바꾼다.
+#         graph[x][y] = 0
+#         # 재귀함수로 처리하여 아래 행으로 한 칸 옮기면서 최단거리 계산
+#         miro(x,y+1)
+#         return True
+#     return False
+#
+# # 행렬입력받기
+# n,m = map(int, input().split())
+# graph = []
+# for i in range(n):
+#     graph.append(list(map(int,input())))
+#
+# result = 0
+#
+# for a in range(n):
+#     for b in range(m):
+#         if miro(a,b) == True:
+#             result +=1
+# print(result)
