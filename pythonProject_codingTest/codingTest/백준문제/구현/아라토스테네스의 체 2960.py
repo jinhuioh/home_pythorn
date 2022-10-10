@@ -24,37 +24,38 @@
 #11:12
 from collections import deque
 
+# 큐를 이용하여 첫인덱스부터 값을 보고 소수의 배수값이면 popleft 아니면 append를 통해 문제를 품
+
 n,k = map(int,input().split())
-indexList = []
-queue = deque()
-queuelist = deque()
+queue = deque()# 고정인덱스
+queuelist = deque()# 배수값이면 popleft 아니면 append를 할 큐 리스트
 for i in range(2,n+1):
     queuelist.append(i)
     queue.append(i)
-    indexList.append(i)
-# print('queuelist',queuelist)
 
-count = 0
+count = 0#배수 값을 삭제할 때마다 카운트를 증가시켜 카운트가 k와 같아지면 print
 while queuelist:#queue가 없어질때까지 while문 돌리기
     # one의 배수 전부 없애고 indexlist를 1씩 증가시키기
     qpop = queuelist[0]
     # print('qpop!!',qpop)
-    for one in queue:
+    for one in queue:#queue값은 변화하지 않는다.(변화하는 값으로 for문을 돌릴 수 없음)
+        # 만약 one이 queue에 있지만 queuelist에 없는 값이면 pass
+        # (예를들어 2를이미 지웠는데 queue에는 있으므로 popleft할 때 인덱스 순서가 맞지 않는다.)
         if one in queuelist:
-            # print('pone,queuelist>> ','꺼낸거qpop',qpop,'pone',queuelist,'one',one)
+            # one을 소수로 나누었을 때 0이면(소수의 배수이면)
             if one % qpop  == 0 :
+                # 카운트 증가
                 count += 1
+                # 해당 배수 값 삭제
                 queuelist.popleft()
-                # print('count k>>>>>>>>>>>',count,k)
+                # 카운트 값이 k와 같다면 one이 답이므로 출력
                 if count == k:
-                    # print('count k',count,k)
                     print(one)
-                # print('queuelist>>if ',queuelist)
-            elif len(queuelist) == 0:
+                    # 답이 나왔으므로 break
                     break
             else:
+                # one이 소수의 배수가 아니면 꺼내서 맨 뒤로 붙여준다.
                 queuelist.append(queuelist.popleft())
-                # print('queuelist>>else ',queuelist)
         else:
             pass
 
