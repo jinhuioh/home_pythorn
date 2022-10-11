@@ -18,47 +18,56 @@
 
 # 9시30분
 #10시 13분
-n,m = map(int,input().split())#세로 가로 입력
-graph = []
-same_list = []#꼭지점이 같은 사각형 크기를 모은 것
-for i in range(n):
-    graph.append(list(map(int,input())))
-
-def square(x,y):
-    i = 0
-    while True:
-        if n == 1 or m == 1:
-            same_list.append(1)
-            break
-        print('i>> ', i)
-        print('x,y//',x,y)
-        # #i가 graph범위를 벗어난다면 continue
-        # if y>n or y<0 or x>m or x<0:
-        #     continue
-        if x == m-1 or y == n-1:
-            print('xy가 범위를 벗어남!!break')
-            break
-        # i가 n,m이면 break
-        if i+y>=n or i+x>=m:
-            print('continue',i+y,i+x)
-            break
-
-        num1 = graph[y+i][x]
-        num2 = graph[y][x+i]
-        num3 = graph[y+i][x+i]
-        print('graph,num=======',graph[y][x],num1,num2,num3)
-
-        if graph[y][x] == num1 and num1 == num2 and num2 == num3:
-            same_list.append((i+1)*(i+1))
-            print('same_list',same_list)
-        i += 1
-
-
-#x,y증가
-for i in range(n):
-    for k in range(m):
-        square(k,i)
-print('답//>>',max(same_list))#꼭지점이 같은 사각형 크기를 모은 것 중에 최대값
+# n,m = map(int,input().split())#세로 가로 입력
+# graph = []
+# same_list = []#꼭지점이 같은 사각형 크기를 모은 것
+# for i in range(n):
+#     graph.append(list(map(int,input())))
+#
+# def square(x,y):
+#     i = 0
+#     while True:
+#         if n == 1 or m == 1:
+#             same_list.append(1)
+#             break
+#         print('i>> ', i)
+#         print('x,y//',x,y)
+#         # #i가 graph범위를 벗어난다면 continue
+#         # if y>n or y<0 or x>m or x<0:
+#         #     continue
+#         if x == m-1 or y == n-1:
+#             print('xy가 범위를 벗어남!!break')
+#             break
+#         # i가 n,m이면 break
+#         if i+y>=n or i+x>=m:
+#             print('continue',i+y,i+x)
+#             break
+#
+#         num1 = graph[y+i][x]
+#         num2 = graph[y][x+i]
+#         num3 = graph[y+i][x+i]
+#         print('graph,num=======',graph[y][x],num1,num2,num3)
+#
+#         if graph[y][x] == num1 and num1 == num2 and num2 == num3:
+#             same_list.append((i+1)*(i+1))
+#             print('same_list',same_list)
+#         i += 1
+#
+#
+# #x,y증가
+# for i in range(n):
+#     for k in range(m):
+#         square(k,i)
+# print('답//>>',max(same_list))#꼭지점이 같은 사각형 크기를 모은 것 중에 최대값
+#
+#
+#
+#
+# n,m = map(int,input().split())#세로 가로 입력
+# graph = []
+# same_list = []#꼭지점이 같은 사각형 크기를 모은 것
+# for i in range(n):
+#     graph.append(list(map(int,input())))
 
 
 
