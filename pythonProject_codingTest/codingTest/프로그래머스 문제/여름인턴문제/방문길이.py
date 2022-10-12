@@ -1,4 +1,23 @@
-# 게임 캐릭터를 4가지 명령어를 통해 움직이려 합니다. 명령어는 다음과 같습니다.
+#힌트! 접근방법
+# !좌표에서 이동하면서 지나간 거리 채크하는 문제
+# x,y좌표 방문했는지도 채크해야하지만
+# 방향성도 채크해야한다@@@!!
+# ex) (0,1) -> (1,1), (1,0)->(1,1) 둘다 (1,1)로 가므로 중복되지만 어디서 이동하는지 값이 다르기 때문에 중복으로 채크하면 안된다!!!!
+# (x,y,nx,ny)로 튜플로 묶어서 리스트에 담에
+# (x,y,nx,ny)의 값이 있으면 pass 아니면 카운트하여 풀면 된다. 
+# 이 경우 (0,0) ->(0,1) 은 (0,1) -> (0,0)과 같으므로
+# 중복처리를 위해 (x,y,nx,ny), (nx,ny,x,y) 둘 다 리스트에 담아주어 중복채크를 진행한다.
+
+
+
+
+
+
+
+
+
+
+#게임 캐릭터를 4가지 명령어를 통해 움직이려 합니다. 명령어는 다음과 같습니다.
 #
 # U: 위쪽으로 한 칸 가기
 #
@@ -19,9 +38,6 @@
 
 # 2시55
 
-
-
-
 #0으로 된 행렬 리스트를 하나 만들어서 방문했으면 1로 바꿈 그리고 만약 이미 1이라면 pass
 
 # 상하좌우xy리스트를 만들어주자.
@@ -29,58 +45,53 @@
 #for문을 돌려 주어진 dirs만큼 이동시키면서 행렬리스트의 0의 값을 1로 바꿔줌
 
 #행렬리스트sum=answer을 리턴해줌
-# dirs="ULURRDLLU"
-dirs = "LULLLLLLU"
-path = [0] * 5
-graph = []
-for i in range(5):
-    graph.append(path)
-graph[1][1] =1
-print(graph)
 
 
+##!!!!!!! 방문한 위치 채크뿐만 아니라 방향성까지 판단해야 하는 문제이므로
+# 튜플로(x위치,y위치, nx = x의 이동 위치,ny = y의 이동 위치)까지 채크해주어야 한다. !!!!!!!!
 
-# path = [0] * 25
+# path = [0] * 10
 # graph = []
-# for i in range(5):
+# for i in range(10):
 #     graph.append(path)
-# # graph[5*ny + nx] =1
+# graph[0][0] = 1
 # print(graph)
 
 
+
+
+from collections import deque
+
+# dirs="ULURRDLLU"
+# dirs = "UDDDDDDUURRRLRLR"
+# dirs = "LULLLLLLU"
+dirs = "ULURRDLLU"
 def solution(dirs):
+    queue = deque()
     move = ['U', 'D', 'L', 'R']  # i값을 증가시키면서 이동시키기 위해 리스트에 담음
     dx = [0, 0, -1, 1]  # 좌우
     dy = [1, -1, 0, 0]  # 상하
 
-    # path = [0]*25
-    graph = [0]*50
-    graph1 = [0]*50#홀수인경우
-    # for i in range(5):
-    #     graph.append(path)
-    answer = 0
+    answer = 0#초기값 이동거리
     x,y = 0,0#시작 위치
     for one in dirs:
         for i in range(4):#상하좌우탐색
             if move[i] == one:
+                # 좌표평면의 경계를 넘어가는 명령어 무시
                 if x + dx[i] > 5 or x + dx[i] < -5 or y + dy[i] > 5 or y + dy[i] < -5:
                     continue
-                x = x + dx[i]
-                y = y + dy[i]
-                # 좌표평면의 경계를 넘어가는 명령어 무시
-                if x<0 or y<0:
-                    graph1[abs(5*y) + abs(x)] =1
+                # 거리 이동시키기
+                nx = x + dx[i]
+                ny = y + dy[i]
+                if (x,y,nx,ny) in queue:
+                    pass
                 else:
-                    graph[5*y + x] =1
-        print('x,y>> ',x,y)
-        print('graph>> ',graph)
-        print('graph1>> ',graph1)
-    # for i in range(5):
-    #     answer1 = sum(graph[i])
-    #     answer += answer1
-    answer = sum(graph)+sum(graph1)
-    if graph[0] == 0 and graph1[0] == 0:
-        answer+=1
+                    queue.appendleft((x,y,nx,ny))#(0,0)에서 (0,1)로 가는경우는 아래
+                    queue.append((nx,ny,x,y))#(0,1)에서 (0,0)으로 가는 경우와 같이 때문에 같이 append 해준다.
+                    answer += 1
+                # x,y를 이동값으로 바꾸어주기
+                x = nx
+                y = ny
     return answer
 
 print(solution(dirs))
