@@ -25,21 +25,88 @@
 
 ##!!!!! 다익스트라(Dijkstra)알고리즘 풀이방법
 # 1. 출발 노드를 설정
-# 2. 출발 노드를 기준으로 각 노드의 최소 비용을 저장
+# 2. 출발 노드를 기준으로 각 노드의 최소 비용을 저장 minCost = []함수 생성
 # 3. 방문하지 않은 노드 중에서 가장 비용이 적은 노드를 선택
 # 4. 해당 노드를 거쳐서 특정한 노드로 가는 경우를 고려하여 최소 비용 갱신
 # 5. 위과정 3-4반복
-
 import heapq
-from collections import deque
+N = 5
+road = [[1,2,1],[2,3,3],[5,2,2],[1,4,2],[5,3,1],[5,4,2]]
+K = 3
+
+def solution(N,K,road):
+    road_all = [[] for _ in range(N+1)]#[]는 위치할 인덱스 각 인덱스에서 [비용, 이동한 인덱스]를 저장
+    minCost = [float('inf') for _ in range(N+1)]#2번. 노드의 최소 비용을 저장할 리스트
+    for r in road:
+        road_all[r[0]].append([r[2],r[1]])
+        road_all[r[1]].append([r[2],r[0]])
+
+    #거리 갱신
+    heap = []
+    heapq.heappush(heap,[0,1])#1로 갈 때 거리가 0을 초기값으로 push. 내가 위치할 인덱스와 거리값이 담기는 곳
+    while heap:
+        cost, node = heapq.heappop(heap)#heap에서 꺼낸 값을 변수에 저장
+        for c,n in road_all[node]:
+            if c + cost < minCost[n]:
+                minCost[n] = c + cost
+                heapq.heappush(heap, [c + cost, n])
+    return len([i for i in minCost if i <=K])
+
+print(solution(N,K,road))
+
+
+
+
+
+
+
+
 #
 N = 5
 road = [[1,2,1],[2,3,3],[5,2,2],[1,4,2],[5,3,1],[5,4,2]]
 K = 3
-#
-# # 이전꺼 합해서 answer세기
-# # k보다 작거나 같으면 answer+=1
-# # heapq란 자료구조 queue의 일종으로, queue의 내부 구조가 heap으로 이루어져 있다.
+
+# 최단 거리 갱신할 함수
+def dijkstra(roadList, minList):
+    heap = []
+    heapq.heappush(heap,[0,1])# 최단 거리가 0, 1로 갈 때
+    while heap:
+        cost, node = heapq.heappop(heap)#예를들어 node가 2라면, 2까지 왔을때의 최단거리=cost
+        for c,n in roadList[node]:#2에서의 이동값들 예를들어 [1,3]이면 2에서 3으로 이동할 때 거리가 1이라는 의미.
+            if cost + c < minList[n]:#기존의 3까지 갈때의 최소값이 들어있는 minList[3]보다
+                                    # 2까지왔을때의 최단거리인 cost에, 2에서 3으로 갈때의 값인 c의 합이 더 작으면 그 값으로 갱신
+                minList[n] = cost + c
+                #힙에 최단거리로 이동한 값을 넣어주자.
+                heapq.heappush(heap,[cost + c, n])
+
+def solution(N,K,road):
+    minList = [float('inf') for _ in range(N+1)]
+    roadList = [[] for _ in range(N+1)]# 각 인덱스에 이동거리와 좌표(노드)넣을 리스트 생성
+    for r in road:
+        roadList[r[0]].append([r[2],r[1]])
+        roadList[r[1]].append([r[2],r[0]])
+        print(r,roadList)
+        # 갱신할 함수 생성
+    dijkstra(roadList, minList)
+    #k보다 거리가 작거나 같은 값들만 출력
+    return len([i for i in minList if i <= K])
+
+print(solution(N,K,road))
+
+
+
+
+
+
+
+
+
+
+
+
+# 이전꺼 합해서 answer세기
+# k보다 작거나 같으면 answer+=1
+# heapq란 자료구조 queue의 일종으로, queue의 내부 구조가 heap으로 이루어져 있다.
 def dijkstra(dist, adj):
     heap = []
     #heap리스트에 [0,1]을 넣겠다는 의미
@@ -70,5 +137,7 @@ def solution(N, road, K):
     dijkstra(dist,adj)
     return len([i for i in dist if i <= K])
 
-print(solution(N, road, K))
+# print(solution(N, road, K))
+
+
 
