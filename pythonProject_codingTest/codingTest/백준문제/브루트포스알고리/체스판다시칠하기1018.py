@@ -17,4 +17,36 @@
 #
 # 출력
 # 첫째 줄에 지민이가 다시 칠해야 하는 정사각형 개수의 최솟값을 출력한다.
-
+from collections import deque
+#입력받기
+n,m = map(int,input().split())
+graph = []
+for i in range(n):
+    graph.append(list(input()))
+#다시 칠해야하는 정사각형 개수의 최솟값 구하기
+count_list = deque()
+#예) n,m = 10,12인 경우 0,0좌표부터 n은 총 2까지 3번 연산(0포함), m은 4까지 총 5번연산 하기 위해 -7을 해줌
+for i in range(n-7):#n=8인 경우 1번만 하기 위해 -7
+    for k in range(m-7):
+        count = 0#짝수칸이 W인 경우 다시 칠해야 할 타일 수를 입력받을 변수
+        count1 = 0#홀수칸이 W인 경우 다시 칠해야 할 타일 수를 입력받을 변수
+        # 0번째 인덱스부터 7번째 인덱스까지 탐색
+        for y in range(i,i+8):
+            for x in range(k,k+8):
+                #짝수칸이 W인 경우
+                if (y+x) % 2 == 0:
+                    if graph[y][x] !='W':
+                        count +=1
+                else:
+                    if graph[y][x] !='B':
+                        count +=1
+                #홀수칸이 W인 경우
+                if (y+x) % 2 == 0:
+                    if graph[y][x] !='B':
+                        count1 +=1
+                else:
+                    if graph[y][x] !='W':
+                        count1 +=1
+        count_list.appendleft(count)
+        count_list.appendleft(count1)
+print(min(count_list))

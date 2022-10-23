@@ -1,5 +1,5 @@
 # 별그리기 문제
-
+import math
 from sys import stdin
 # <code>---------------------------------------------------------------------
 # n = int(stdin.readline())
@@ -366,22 +366,69 @@ from sys import stdin
 # 이항계수
 # <code>---------------------------------------------------------------------
 # nCk에 대해 연산하면 됨..
-n,k = map(int, input().split())
+# n,k = map(int, input().split())
 
-if n==k or k==0:
-    print(int(1))
-else:
-    n_pak = 1
-    n_k_pak = 1
-    k_pak = 1
-    for i in range(1,n+1):
-        n_pak = n_pak*i
+# if n==k or k==0:
+#     print(int(1))
+# else:
+#     n_pak = 1
+#     n_k_pak = 1
+#     k_pak = 1
+#     for i in range(1,n+1):
+#         n_pak = n_pak*i
+#
+#     for i in range(1,n-k+1):
+#         n_k_pak = n_k_pak*i
+#
+#     for i in range(1,k+1):
+#         k_pak = k_pak*i
+#     print(int(n_pak/(k_pak*n_k_pak)))
 
-    for i in range(1,n-k+1):
-        n_k_pak = n_k_pak*i
 
-    for i in range(1,k+1):
-        k_pak = k_pak*i
-    print(int(n_pak/(k_pak*n_k_pak)))
+
+
+# # new============================================================================================================
+# 문제
+# 주어진 수 N개 중에서 소수가 몇 개인지 찾아서 출력하는 프로그램을 작성하시오.
+#
+# 입력
+# 첫 줄에 수의 개수 N이 주어진다. N은 100이하이다. 다음으로 N개의 수가 주어지는데 수는 1,000 이하의 자연수이다.
+#
+# 출력
+# 주어진 수들 중 소수의 개수를 출력한다.
+# <code>---------------------------------------------------------------------
+n = int(stdin.readline())
+num = list(map(int, stdin.readline().split()))
+result = 0
+# for i in num:
+#     if i == 2 or i == 3 or i == 5 or i == 7:
+#         result += 1
+#     else:
+#         if i>7:
+#             if i%2 != 0 and i%2 != 0 and i%3 != 0 and i%5 != 0 and i%7 != 0:
+#                 result +=1
+# print(result)
+result_list = []
+for i in num:
+    #1인경우 소수가 아님
+    if i == 1:
+        result = 1#소수가 아닌경우 result 에 1 부여
+    #2인경우 소수
+    elif i == 2:
+        result = 0
+    #2보다 큰 경우 i를 i보다 작은 수들로 나눠서 나머지가 0인 경우가 있으면 result를 1로 부여하고 break
+    #result를 append한 후 전체 숫자 n에서 소수가 아닌 경우를 빼면(sum(result_list)) 소수인 경우만 남는다.
+    else:
+        for k in range(2,i):
+            # print('k,i',k,i,'i % k>',i % k)
+            if i % k == 0:
+                result = 1
+                break
+            else:
+                result = 0
+    result_list.append(result)
+    # print(result_list)
+print(n-sum(result_list))
+
 
 
