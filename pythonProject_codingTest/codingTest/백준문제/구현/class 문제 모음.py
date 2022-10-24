@@ -1,5 +1,6 @@
 # 별그리기 문제
 import math
+from collections import deque
 from sys import stdin
 # <code>---------------------------------------------------------------------
 # n = int(stdin.readline())
@@ -397,38 +398,90 @@ from sys import stdin
 # 출력
 # 주어진 수들 중 소수의 개수를 출력한다.
 # <code>---------------------------------------------------------------------
-n = int(stdin.readline())
-num = list(map(int, stdin.readline().split()))
-result = 0
+# n = int(stdin.readline())
+# num = list(map(int, stdin.readline().split()))
+# result = 0
+# result_list = []
 # for i in num:
-#     if i == 2 or i == 3 or i == 5 or i == 7:
-#         result += 1
+#     #1인경우 소수가 아님
+#     if i == 1:
+#         result = 1#소수가 아닌경우 result 에 1 부여
+#     #2인경우 소수
+#     elif i == 2:
+#         result = 0
+#     #2보다 큰 경우 i를 i보다 작은 수들로 나눠서 나머지가 0인 경우가 있으면 result를 1로 부여하고 break
+#     #result를 append한 후 전체 숫자 n에서 소수가 아닌 경우를 빼면(sum(result_list)) 소수인 경우만 남는다.
 #     else:
-#         if i>7:
-#             if i%2 != 0 and i%2 != 0 and i%3 != 0 and i%5 != 0 and i%7 != 0:
-#                 result +=1
-# print(result)
-result_list = []
-for i in num:
-    #1인경우 소수가 아님
-    if i == 1:
-        result = 1#소수가 아닌경우 result 에 1 부여
-    #2인경우 소수
-    elif i == 2:
-        result = 0
-    #2보다 큰 경우 i를 i보다 작은 수들로 나눠서 나머지가 0인 경우가 있으면 result를 1로 부여하고 break
-    #result를 append한 후 전체 숫자 n에서 소수가 아닌 경우를 빼면(sum(result_list)) 소수인 경우만 남는다.
-    else:
-        for k in range(2,i):
-            # print('k,i',k,i,'i % k>',i % k)
-            if i % k == 0:
-                result = 1
-                break
-            else:
-                result = 0
-    result_list.append(result)
-    # print(result_list)
-print(n-sum(result_list))
+#         for k in range(2,i):
+#             # print('k,i',k,i,'i % k>',i % k)
+#             if i % k == 0:
+#                 result = 1
+#                 break
+#             else:
+#                 result = 0
+#     result_list.append(result)
+#     # print(result_list)
+# print(n-sum(result_list))
 
 
 
+# # # new============================================================================================================
+# 문제
+# 알파벳 소문자로 이루어진 N개의 단어가 들어오면 아래와 같은 조건에 따라 정렬하는 프로그램을 작성하시오.
+#
+# 길이가 짧은 것부터
+# 길이가 같으면 사전 순으로
+# 입력
+# 첫째 줄에 단어의 개수 N이 주어진다. (1 ≤ N ≤ 20,000) 둘째 줄부터 N개의 줄에 걸쳐 알파벳 소문자로 이루어진 단어가 한 줄에 하나씩 주어진다. 주어지는 문자열의 길이는 50을 넘지 않는다.
+#
+# 출력
+# 조건에 따라 정렬하여 단어들을 출력한다. 단, 같은 단어가 여러 번 입력된 경우에는 한 번씩만 출력한다.
+#
+# 예제 입력 1
+# 13
+# but
+# i
+# wont
+# hesitate
+# no
+# more
+# no
+# more
+# it
+# cannot
+# wait
+# im
+# yours
+# 예제 출력 1
+# i
+# im
+# it
+# no
+# but
+# more
+# wait
+# wont
+# yours
+# cannot
+# hesitate
+# # <code>---------------------------------------------------------------------
+#
+
+# set로 중복없애기 set
+#길이가 짧은 순서대로 출력 sorted
+#길이가 같다면 알파벳 순서대로 정렬
+
+n = int(stdin.readline())
+word = []
+word_len_list = []
+for i in range(n):
+    word.append(input())
+word_list = list(set(word))
+# print(word_list)
+for i in (word_list):
+    word_len_list.append((len(i),i))
+    # print(word_len_list)
+result = sorted(word_len_list)
+
+for num, wordone in result:
+    print(wordone)
