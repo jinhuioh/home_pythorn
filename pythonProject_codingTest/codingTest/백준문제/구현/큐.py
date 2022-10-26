@@ -61,40 +61,39 @@
 # -1
 # 0
 # 3
-
-from sys import stdin
-from collections import deque
-n = int(stdin.readline())
-queue = deque()
-for i in range(n):
-    # print(queue)
-    word = stdin.readline().rstrip()#왜 rstrip()을 split()으로 바꿔야 답이 맞을까?
-    if 'push' in word:
-        queue.append(word[-1])
-    elif 'pop' in word:
-        if len(queue) == 0:
-            print(-1)
-        else:
-            print(queue.popleft())
-    elif 'size' in word:
-        print(len(queue))
-    elif 'empty' in word:
-        if len(queue) == 0:
-            print(1)
-        else:
-            print(0)
-    elif 'front' in word:
-        if len(queue) == 0:
-            print(-1)
-        else:
-            print(queue[0])
-    elif 'back' in word:
-        if len(queue) == 0:
-            print(-1)
-        else:
-            print(queue[-1])
-    else:
-        continue
+# from sys import stdin
+# from collections import deque
+# n = int(stdin.readline())
+# queue = deque()
+# for i in range(n):
+#     # print(queue)
+#     word = stdin.readline().rstrip()#왜 rstrip()을 split()으로 바꿔야 답이 맞을까?
+#     if 'push' in word:
+#         queue.append(word[-1])
+#     elif 'pop' in word:
+#         if len(queue) == 0:
+#             print(-1)
+#         else:
+#             print(queue.popleft())
+#     elif 'size' in word:
+#         print(len(queue))
+#     elif 'empty' in word:
+#         if len(queue) == 0:
+#             print(1)
+#         else:
+#             print(0)
+#     elif 'front' in word:
+#         if len(queue) == 0:
+#             print(-1)
+#         else:
+#             print(queue[0])
+#     elif 'back' in word:
+#         if len(queue) == 0:
+#             print(-1)
+#         else:
+#             print(queue[-1])
+#     else:
+#         continue
 
 
 
@@ -106,6 +105,7 @@ queue = deque()
 for i in range(n):
     # print(queue)
     word = stdin.readline().rstrip()
+    
     if 'push' in word:
         queue.append(word[-1])
     elif 'pop' in word:
