@@ -12,8 +12,24 @@
 
 # (x,y)로 좌표를 입력.
 # x값을 1개씩 증가시켜 y값 사이값을 통해 총 빼야하는 네모 수 구하기
+#최대공약수이용
+import math
+
 w,h = map(int, input().split())
 
 def solution(w,h):
-    answer = 1
-    return answer
+    all_square = w*h
+    count = 0
+    gcd_num = math.gcd(w,h)
+    #최대공약수가 1이 아닌 경우
+    if gcd_num != 1:
+        w,h = w/gcd_num, h/gcd_num
+    #    해
+        count = w+h-1
+        count = count * gcd_num
+        return all_square-int(count)
+    #최대공약수가 1인 경우
+    else:
+        count = w+h -1
+        return all_square-int(count)
+print(solution(w,h))
