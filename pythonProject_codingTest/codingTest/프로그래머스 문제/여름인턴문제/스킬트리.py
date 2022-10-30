@@ -29,11 +29,8 @@ skill_trees = ["BACDE", "CBADF", "AECB", "BDA"]
 #skill[-1]부터 탐색시작
 def solution(skill, skill_trees):
     answer = len(skill_trees)
-    # for i in range(len(skill)):
-    #     last_skill = skill[i]
     for one in skill_trees:
         queue = deque(one)
-        # print('queue',queue)
         i = 0
         skill_len = skill[i+1:]
         while queue:
@@ -44,13 +41,10 @@ def solution(skill, skill_trees):
             if popone not in skill:
                 continue
             if last_skill == popone:
-                # print('lastskill',last_skill)
                 skill_len = skill[i+2:]
-                # print('skilllen',skill_len)
                 i += 1
                 continue
             if popone in skill_len:
-                # print('popone in skilllen',popone,'skillllen:',skill_len)
                 answer -= 1
                 break
     return answer
@@ -58,3 +52,23 @@ def solution(skill, skill_trees):
     # return answer
 
 print(solution(skill,skill_trees))
+
+
+
+# 다른사람 풀이
+def solution(skill,skill_trees):
+    # 초기값
+    answer = 0
+    # skill_trees의 원소 하나씩 꺼내기
+    for skills in skill_trees:
+        skill_list = deque(skill)
+        # 만약 원소 안에 있는 단어가 skills변수 안에 있는 숫자인데,
+        # 첫번째 순서가 아닌경우(pop으로 했기 때문에 맨 앞에 있는 단어가 사라진다.)
+        for s in skills:
+            if s in skill:
+                if s != skill_list.pop(0):
+                    break
+        else:
+            answer +=1
+
+    return answer
