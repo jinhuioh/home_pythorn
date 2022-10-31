@@ -31,69 +31,41 @@ from collections import deque
 a= [1,3,3,5,6,7,8,9]
 b= [2,2,5,5,7,7,7,8]
 
-#
+
+def solution(a, b):
+    a.sort(reverse=True)
+    b.sort(reverse=True)
+    answer = 0
+    for A in a:
+        if A >= b[0]:
+            continue
+        else:
+            answer+=1
+            b.remove(b[0])
+    return answer
+
+print(solution(a,b))
+
+
 # def solution(a, b):
 #     a.sort()
 #     b.sort()
 #     answer = 0
-#     queueA = deque(a)
-#     queueB = deque(b)
-#
-#     #한개씩 꺼내서 비교
-#     while queueA:
-#         que_a_pop= queueA.popleft()
-#         que_b_pop= queueB.popleft()
-#         if len(queueA) > 0 and que_b_pop <= que_a_pop and queueB[0] <= queueA[0] and queueB[0]> que_a_pop:
-#             answer += 1
-#         elif que_b_pop > que_a_pop:
-#             answer += 1
-#
-#     return answer
-#
-# print(solution(a,b))
-
-# a= [5,1,3,7]
-# b= [2,2,6,8]
-# a= [2,2,2,2]
-# b= [1,1,1,1]
-a= [1,3,3,5,6,7,8,9]
-b= [2,2,5,5,7,7,7,8]
-
-def solution(a, b):
-    a.sort()
-    b.sort()
-    answer = 0
-    for A in a:
-        if len(b) <= 0:
-            break
-        if A >= b[0]:
-            for i in range(len(b)):
-                # print('b[0]',b[0])
-                if len(b) <0:
-                    break
-                if b[0] > A:
-                    answer +=1
-                    break
-                else:
-                    b.remove(b[0])
-
-        else:
-            answer+=1
-            # print('else',A,b[0])
-            # print('answer',answer)
-            b.remove(b[0])
-    return answer
-#
-# def solution(a, b):
-#     a.sort(reverse=True)
-#     b.sort(reverse=True)
-#     answer = 0
 #     for A in a:
+#         if len(b) <= 0:
+#             break
 #         if A >= b[0]:
-#             continue
+#             for i in range(len(b)):
+#                 if len(b) <0:
+#                     break
+#                 if b[0] > A:
+#                     answer +=1
+#                     b.remove(b[0])
+#                     break
+#                 else:
+#                     b.remove(b[0])
 #         else:
 #             answer+=1
 #             b.remove(b[0])
 #     return answer
-
-print(solution(a,b))
+#

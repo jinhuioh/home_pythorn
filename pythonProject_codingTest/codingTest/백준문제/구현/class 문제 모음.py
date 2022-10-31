@@ -1,7 +1,7 @@
 # 별그리기 문제
 import math
 from collections import deque
-from sys import stdin
+# from sys import stdin
 # <code>---------------------------------------------------------------------
 # n = int(stdin.readline())
 #
@@ -642,10 +642,137 @@ from sys import stdin
 # 6
 # 72
 # # # <code>---------------------------------------------------------------------
-mi, ma = map(int, stdin.readline().split())
-gcd_num = math.gcd(mi,ma)
-print(gcd_num)
-def lcm(a,b,gcd_num):
-    lc = (a*b)/gcd_num
-    return lc
-print(int(lcm(mi,ma,gcd_num)))
+# mi, ma = map(int, stdin.readline().split())
+# gcd_num = math.gcd(mi,ma)
+# print(gcd_num)
+# def lcm(a,b,gcd_num):
+#     lc = (a*b)/gcd_num
+#     return lc
+# print(int(lcm(mi,ma,gcd_num)))
+
+
+# # # new============================================================================================================
+# 문제
+# N!에서 뒤에서부터 처음 0이 아닌 숫자가 나올 때까지 0의 개수를 구하는 프로그램을 작성하시오.
+#
+# 입력
+# 첫째 줄에 N이 주어진다. (0 ≤ N ≤ 500)
+#
+# 출력
+# 첫째 줄에 구한 0의 개수를 출력한다.
+# # # <code>---------------------------------------------------------------------
+
+#1.N!를 구한다.
+#2.뒤에서부터 0이면 answer+=1을 해서 연산
+
+# n = int(input())
+# n_pak = 1
+# for i in range(1,n+1):
+#     n_pak *= i
+# str_n_pak = str(n_pak)
+#
+# answer = 0
+# i = -1
+# while True:
+#     if str_n_pak[i] == '0':
+#         answer +=1
+#     else:
+#         break
+#     i -= 1
+# print(answer)
+
+
+# new============================================================================================================
+# 듣보잡
+#
+# 문제
+# 김진영이 듣도 못한 사람의 명단과, 보도 못한 사람의 명단이 주어질 때, 듣도 보도 못한 사람의 명단을 구하는 프로그램을 작성하시오.
+#
+# 입력
+# 첫째 줄에 듣도 못한 사람의 수 N, 보도 못한 사람의 수 M이 주어진다. 이어서 둘째 줄부터 N개의 줄에 걸쳐 듣도 못한 사람의 이름과, N+2째 줄부터 보도 못한 사람의 이름이 순서대로 주어진다. 이름은 띄어쓰기 없이 알파벳 소문자로만 이루어지며, 그 길이는 20 이하이다. N, M은 500,000 이하의 자연수이다.
+#
+# 듣도 못한 사람의 명단에는 중복되는 이름이 없으며, 보도 못한 사람의 명단도 마찬가지이다.
+#
+# 출력
+# 듣보잡의 수와 그 명단을 사전순으로 출력한다.
+# <code>---------------------------------------------------------------------
+# n,m = map(int, stdin.readline().split())
+# #명단의 중복을 없애고 교집합으로 중복된 사람이름을 찾기 위해 set()자료형을 이용
+# #append대신 add를 사용하면 된다.
+# name1 = set()
+# name2 = set()
+# for i in range(n):
+#     name1.add(stdin.readline().rstrip())
+# for i in range(m):
+#     name2.add(stdin.readline().rstrip())
+# result = sorted(list(name1&name2))
+# print(len(result))
+# for i in result:
+#     print(i)
+#
+
+
+
+# new============================================================================================================
+# 문제
+# 2019 HEPC - MAVEN League의 "비밀번호 만들기"와 같은 방식으로 비밀번호를 만든 경민이는 한 가지 문제점을 발견하였다.
+# 비밀번호가 랜덤으로 만들어져서 기억을 못 한다는 것이었다! 그래서 경민이는 메모장에 사이트의 주소와 비밀번호를 저장해두기로 했다.
+# 하지만 컴맹인 경민이는 메모장에서 찾기 기능을 활용하지 못하고 직접 눈으로 사이트의 주소와 비밀번호를 찾았다.
+# 메모장에 저장된 사이트의 수가 늘어나면서 경민이는 비밀번호를 찾는 일에 시간을 너무 많이 쓰게 되었다.
+# 이를 딱하게 여긴 문석이는 경민이를 위해 메모장에서 비밀번호를 찾는 프로그램을 만들기로 결심하였다!
+# 문석이를 도와 경민이의 메모장에서 비밀번호를 찾아주는 프로그램을 만들어보자.
+#
+# 입력
+# 첫째 줄에 저장된 사이트 주소의 수 N(1 ≤ N ≤ 100,000)과 비밀번호를 찾으려는 사이트 주소의 수 M(1 ≤ M ≤ 100,000)이 주어진다.
+#
+# 두번째 줄부터 N개의 줄에 걸쳐 각 줄에 사이트 주소와 비밀번호가 공백으로 구분되어 주어진다. 사이트 주소는 알파벳 소문자, 알파벳 대문자, 대시('-'), 마침표('.')로 이루어져 있고, 중복되지 않는다. 비밀번호는 알파벳 대문자로만 이루어져 있다. 모두 길이는 최대 20자이다.
+#
+# N+2번째 줄부터 M개의 줄에 걸쳐 비밀번호를 찾으려는 사이트 주소가 한줄에 하나씩 입력된다. 이때, 반드시 이미 저장된 사이트 주소가 입력된다.
+# <code>---------------------------------------------------------------------
+from sys import stdin
+n,m = map(int, stdin.readline().split())
+N = {}
+for i in range(n):
+    a,b = map(str, stdin.readline().split())
+    N[a] = b
+# print(N)
+#
+for i in range(m):
+    print(N[stdin.readline().rstrip()])
+
+
+
+
+
+
+# from sys import stdin
+# n,m = map(int, input().split())
+# graph1 = []
+# graph2 = []
+# for i in range(n):
+#     graph1.append((stdin.readline().split()))
+# # queue1 = deque(graph1)
+#     # graph1.add(stdin.readline().rstrip())
+# for i in range(m):
+#     graph2.append(stdin.readline().rstrip())
+# print(graph1)
+# print('graph2',graph2)
+#
+# for one2 in graph2:
+#     for one1 in graph1:
+#         a,b = one1
+#         if one2 == a:
+#             print(b)
+# from sys import stdin
+# input = stdin.readline
+#
+# N, M = map(int, input().split())
+# result = {}
+#
+# for _ in range(N):
+#     site, ps = input().split()
+#     result[site] = ps
+# # print(result)
+#
+# for _ in range(M):
+#     print(result[input().rstrip()])
