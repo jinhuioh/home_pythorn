@@ -39,32 +39,31 @@ n = int(input())
 
 for i in range(n):
     m = int(stdin.readline())
-    a0 = 0# 0일 때 초기값
+    # 0일때 초기값은 변수에 따로 넣어주지 않음
     b0 = 0# 1일 때 초기값
-    a=1# 0일 때 리턴되는 값
     b=1# 1일 때 리턴되는 값
     if m == 0:
-        print(a,b0)
+        print(1,b0)
     elif m == 1:
-        print(a0,b)
+        print(0,b)
     else:
         # 피보나치 수열을 사용하기 위한 초기값
-        c00 = a
+        # 0일때 초기값은 i-1일때 1의 초기값과 같으므로 따로 지정해주지 않았다.
         c11 = b0
-        c0 = a0
         c1 = b
         for i in range(2,m+1):
-            c_z = c00+c0
+            # i번째 피보나치수
+            c_z = c1
             c_o = c11+c1
             ## 변수 갱신
-            # m-2번째 값
-            c00 = c0
+            # m-2번째 값. i-2번째 값을 i-1번째 값으로 변경
             c11 = c1
-            # m-1번째 값
-            c0 = c_z
+            # m-1번째 값. i-1번째 값을 i번째 값으로 변경
             c1 = c_o
             # print('갱신한 값',c00,c0,c11,c1)
         print(c_z, c_o)
+
+
 
 
 
