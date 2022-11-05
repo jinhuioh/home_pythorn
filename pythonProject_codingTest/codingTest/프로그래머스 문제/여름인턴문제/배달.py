@@ -28,51 +28,84 @@
 # 2. 출발 노드를 기준으로 각 노드의 최소 비용을 저장 minCost = []함수 생성
 # 3. 방문하지 않은 노드 중에서 가장 비용이 적은 노드를 선택
 # 4. 해당 노드를 거쳐서 특정한 노드로 가는 경우를 고려하여 최소 비용 갱신
-
-
-
-
 # 5. 위과정 3-4반복
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import heapq
-# N = 5
-# road = [[1,2,1],[2,3,3],[5,2,2],[1,4,2],[5,3,1],[5,4,2]]
-# K = 3
-#
+from collections import deque
+
+N = 5
+road = [[1,2,1],[2,3,3],[5,2,2],[1,4,2],[5,3,1],[5,4,2]]
+K = 3
+
 # def solution(N,K,road):
-#     road_all = [[] for _ in range(N+1)]#[]는 위치할 인덱스 각 인덱스에서 [비용, 이동한 인덱스]를 저장
-#     minCost = [float('inf') for _ in range(N+1)]#2번. 노드의 최소 비용을 저장할 리스트
+#     min_list = [float('inf') for _ in range(N + 1)]
+#     road_list = [[] for _ in range(N + 1)]
 #     for r in road:
-#         road_all[r[0]].append([r[2],r[1]])
-#         road_all[r[1]].append([r[2],r[0]])
-#         # print(road_all)
-#         # print(minCost)
+#         road_list[r[0]].append((r[1],r[2]))
+#         road_list[r[1]].append((r[0],r[2]))
 #
-#     #거리 갱신
+#     # 거리 갱신
 #     heap = []
-#     heapq.heappush(heap,[0,1])#1로 갈 때 거리가 0을 초기값으로 push. 내가 위치할 인덱스와 거리값이 담기는 곳
+#     heapq.heappush(heap,[1,0])# 1로 갈 때 거리가 0 인 초기값
 #     while heap:
-#         cost, node = heapq.heappop(heap)#heap에서 꺼낸 값을 변수에 저장
-#         for c,n in road_all[node]:
-#             if c + cost < minCost[n]:
-#                 minCost[n] = c + cost
-#                 heapq.heappush(heap, [c + cost, n])
-#     return len([i for i in minCost if i <=K])
+#         road, node = heapq.heappop(heap)
+#         for rr,nn in road_list[road]:
+#             if min_list[rr] > int(nn) + int(node):
+#                 min_list[rr] =int(nn) + int(node)
+#                 heapq.heappush(heap,[rr, int(nn) + int(node)])
+#     return len([i for i in min_list if i<=K])
 #
 # print(solution(N,K,road))
-#
-#
-#
-#
-#
-#
-#
-#
+
+def solution(N,K,road):
+    min_list = [float('inf') for _ in range(N + 1)]
+    road_list = [[] for _ in range(N + 1)]
+    for r in road:
+        road_list[r[0]].append((r[1],r[2]))
+        road_list[r[1]].append((r[0],r[2]))
+
+    # 거리 갱신
+    queue = deque([1,0])
+    while queue:
+        road = queue.popleft()
+        node = queue.popleft()
+        for rr,nn in road_list[road]:
+            if min_list[rr] > int(nn) + int(node):
+                min_list[rr] =int(nn) + int(node)
+                queue.appendleft(int(nn) + int(node))
+                queue.appendleft(rr)
+    return len([i for i in min_list if i<=K])
+
+print(solution(N,K,road))
+
+
+
 # #
 # N = 5
 # road = [[1,2,1],[2,3,3],[5,2,2],[1,4,2],[5,3,1],[5,4,2]]
 # K = 3
-#
-# # 최단 거리 갱신할 함수
+
+# 최단 거리 갱신할 함수
 # def dijkstra(roadList, minList):
 #     heap = []
 #     heapq.heappush(heap,[0,1])# 최단 거리가 0, 1로 갈 때
@@ -106,35 +139,35 @@ import heapq
 # 이전꺼 합해서 answer세기
 # k보다 작거나 같으면 answer+=1
 # heapq란 자료구조 queue의 일종으로, queue의 내부 구조가 heap으로 이루어져 있다.
-def dijkstra(dist, adj):
-    heap = []
-    #heap리스트에 [0,1]을 넣겠다는 의미
-    heapq.heappush(heap, [0,1])#거리,노드(위치)#1번으로 가는 거리 0.
-    print('힙1>>>',heap)
-    while heap:
-        cost,node = heapq.heappop(heap)#아래에서 넣었던 [최소거리, 위치]를 꺼내서 해당 위치를 중심으로 아래 while문을 돈다.
-        print('cost,node >>>',cost, node)#거리,위치
-        for c, n in adj[node]:# node가 1이면 adj의 1번째 리스트로 for문 돌림.
-            print('for문 cost,node >>>', c, n,'adj[node]>>',adj[node])  # 거리,위치
-
-            if cost + c < dist[n]:#c는 거리 cost는 기존거리(거쳐간 거리), dist는 갱신하고 있는 list
-                print('c(거리)는>',c,'cost + c(총 거리)>> ',cost + c,'n(위치)은> ',n,'dist[n]>> ',dist[n])
-                dist[n] = cost + c
-                heapq.heappush(heap, [cost+c, n])#최소거리와 위치 heap에 넣기.
-                print('갱신!! dijkstra dist>>> ',dist)
-
-
-def solution(N, road, K):
-    dist = [float('inf')]*(N+1) #dist 배열 만들고 최소거리 갱신
-    print('dist>> ',dist)
-    dist[1] = 0 #1번은 자기자신이니까 거리 0
-    adj = [[] for _ in range(N+1)]# 빈 리스트 생성! 인접노드 & 거리 기록할 배열
-    for r in road:
-        adj[r[0]].append([r[2], r[1]])#예)[1,4,2]이면, 1번째 리스트에 [2,4]를 append(1에서 4로 이동할 때 거리 2 라는 의미)
-        adj[r[1]].append([r[2], r[0]])#예)[1,4,2]이면, 4번째 리스트에 [2,1]를 append(4에서 1로 이동할 때 거리가 2라는 의미)
-        print('adj>> ','r[0],r[1]>>',r[0],r[1],'[r[2], r[1]]>>',[r[2], r[1]],adj)
-    dijkstra(dist,adj)
-    return len([i for i in dist if i <= K])
+# def dijkstra(dist, adj):
+#     heap = []
+#     #heap리스트에 [0,1]을 넣겠다는 의미
+#     heapq.heappush(heap, [0,1])#거리,노드(위치)#1번으로 가는 거리 0.
+#     print('힙1>>>',heap)
+#     while heap:
+#         cost,node = heapq.heappop(heap)#아래에서 넣었던 [최소거리, 위치]를 꺼내서 해당 위치를 중심으로 아래 while문을 돈다.
+#         print('cost,node >>>',cost, node)#거리,위치
+#         for c, n in adj[node]:# node가 1이면 adj의 1번째 리스트로 for문 돌림.
+#             print('for문 cost,node >>>', c, n,'adj[node]>>',adj[node])  # 거리,위치
+#
+#             if cost + c < dist[n]:#c는 거리 cost는 기존거리(거쳐간 거리), dist는 갱신하고 있는 list
+#                 print('c(거리)는>',c,'cost + c(총 거리)>> ',cost + c,'n(위치)은> ',n,'dist[n]>> ',dist[n])
+#                 dist[n] = cost + c
+#                 heapq.heappush(heap, [cost+c, n])#최소거리와 위치 heap에 넣기.
+#                 print('갱신!! dijkstra dist>>> ',dist)
+#
+#
+# def solution(N, road, K):
+#     dist = [float('inf')]*(N+1) #dist 배열 만들고 최소거리 갱신
+#     print('dist>> ',dist)
+#     dist[1] = 0 #1번은 자기자신이니까 거리 0
+#     adj = [[] for _ in range(N+1)]# 빈 리스트 생성! 인접노드 & 거리 기록할 배열
+#     for r in road:
+#         adj[r[0]].append([r[2], r[1]])#예)[1,4,2]이면, 1번째 리스트에 [2,4]를 append(1에서 4로 이동할 때 거리 2 라는 의미)
+#         adj[r[1]].append([r[2], r[0]])#예)[1,4,2]이면, 4번째 리스트에 [2,1]를 append(4에서 1로 이동할 때 거리가 2라는 의미)
+#         print('adj>> ','r[0],r[1]>>',r[0],r[1],'[r[2], r[1]]>>',[r[2], r[1]],adj)
+#     dijkstra(dist,adj)
+#     return len([i for i in dist if i <= K])
 
 # print(solution(N, road, K))
 

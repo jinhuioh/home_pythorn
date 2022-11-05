@@ -33,7 +33,29 @@
 # jum = 을 하나씩 n까지 증가시키면서
 # tele를 하나씩 증가시켜서 ans에 건전지 값 append
 # ans = []#건전지 값들을 담는 리스트 여기서 min값을 return해준다.
-n = 5000
+n = 500
+def solution(n):
+    #1부터 시작해야 곱하기2해서 순간이동하므로 1부터 시작
+    count = 1
+    while True:
+        if n == 1:
+            break
+        if n%2 == 0:
+            n = n//2
+        else:
+            n = n-1
+            count +=1
+    return count
+print(solution(n))
+
+
+
+
+
+
+
+
+
 
 def solution(n):
     # 건전지값

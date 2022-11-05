@@ -22,3 +22,33 @@
 # 아파트의 개수 N, 현재 기지국이 설치된 아파트의 번호가 담긴 1차원 배열 stations,
 # 전파의 도달 거리 W가 매개변수로 주어질 때,
 # 모든 아파트에 전파를 전달하기 위해 증설해야 할 기지국 개수의 최솟값을 리턴하는 solution 함수를 완성해주세요
+# N	stations	W	answer
+# 11	[4, 11]	1	3
+from collections import deque
+
+# N = 15
+# stations = [4,11,15]
+# w = 1
+N = 16
+stations = [9]
+w = 2
+
+
+from math import ceil
+
+
+def solution(n, stations, w):
+    answer = 0
+    W = 2 * w + 1
+
+    start = 1
+    for s in stations:
+        answer += max(ceil((s - w - start) / W), 0)#기지국이 붙어있는경우 음수가 나올 가능성이 있어 0과 max로 비교해준다.
+        start = s + w + 1
+
+    if n >= start:
+        answer += ceil((n - start + 1) / W)
+
+    return answer
+
+print(solution(N, stations, w))

@@ -5,7 +5,7 @@
 # 마지막 사람이 단어를 말한 다음에는 다시 1번부터 시작합니다.
 # 앞사람이 말한 단어의 마지막 문자로 시작하는 단어를 말해야 합니다.
 # 이전에 등장했던 단어는 사용할 수 없습니다.
-# 한 글자인 단어는 인정되지 않습니다. <---이게 의미하는게 건너뛴다는 의미인가?
+# 한 글자인 단어는 인정되지 않습니다.
 # 다음은 3명이 끝말잇기를 하는 상황을 나타냅니다.
 #
 # tank → kick → know → wheel → land → dream → mother → robot → tank
@@ -31,6 +31,71 @@
 # 정답은 [ 번호, 차례 ] 형태로 return 해주세요.
 # 만약 주어진 단어들로 탈락자가 생기지 않는다면, [0, 0]을 return 해주세요.
 
+n = 3
+# words = ["hello", "one", "even", "never", "now", "world", "draw"]
+words =["tank", "kick", "know", "wheel", "land", "dream", "mother", "robot", "tank","tank"]
+# words = ["hello", "observe","effect", "take", "either", "recognize", "encourage", "ensure", "establish", "hang", "gather", "refer", "reference", "estimate", "executive"]
+
+def solution(n,words):
+    # 사람들 순서 들어가는 리스트
+    people_list = []
+    k = 1
+    for i in range(len(words)):
+        if k == n+1:
+            k = 1
+        people_list.append(k)
+        k += 1
+    # 순서 들어가는 리스트
+    num_list = []
+    #정답이 들어가는 리스트
+    answer = 0
+    #중복되는 경우 2번째 중복시 걸리므로 count했을 때 첫번째인덱스는 답이 아니다.
+    count = 0
+    m = 0
+    for i in range(len(words)):
+        if i % n ==0:
+            m += 1
+        num_list.append(m)
+
+    for i in range(1,len(words)):
+        # 0번째 인덱스 글자의 길이가 1인 경우
+        if len(words[0]) == 1:
+            answer=1
+            return [people_list[i], num_list[i]]
+            break
+        #1글자인 경우
+        if len(words[i]) == 1:
+            answer = 1
+            return [people_list[i], num_list[i]]#번호와 차례 리턴
+            break
+        #이전에 나온 단어인 경우
+        elif words.count(words[i]) >= 2:
+            count +=1
+            answer = 1
+            if count == 2:
+                return [people_list[i], num_list[i]]
+                break
+        #틀린 경우
+        elif words[i-1][-1] != words[i][0]:
+            answer = 1
+            return [people_list[i], num_list[i]]
+            break
+    if answer == 0:
+        return [0,0]
+    else:
+        return [people_list[i], num_list[i]]
+
+
+print(solution(n,words))
+
+
+
+
+
+
+
+
+
 # 풀이 순서
 # 0. 사람순서 list, 몇바퀴째인지 list, 가장 작은 인덱스의 정답을 출력할 list, 정답들어가는 list 생성
 # 1. 단어의 길이가 1일 때, pass
@@ -46,56 +111,67 @@ n = 3
 words =["tank", "kick", "know", "wheel", "land", "dream", "mother", "robot", "tank"]
 # words = ["hello", "observe","effect", "take", "either", "recognize", "encourage", "ensure", "establish", "hang", "gather", "refer", "reference", "estimate", "executive"]
 
-def solution(n, words):
-    answer = []#정답들어가는 list
-    people = []#사람순서 list
-    index = []#몇바퀴째인지 list
-    minList = []#가장 작은 인덱스의 정답을 출력할 list
-    kIndex=0
-    # 사람순서
-    for i in range(n):
-        people.append(i+1)
-    for i in range(n,len(words)):
-        people.append(people[i-n])
-    # 인덱스
-    k = 0
-    for i in range(1, len(words) + 1):
-        if i == len(words)+1:
-            break
-        if i > n and i % n == 1:
-            k += 1
-        index.append(1 + k)
 
-    #1. 단어의 길이가 1일 때, pass
-    for i in range(len(words)):
-        if len(words[i])==1:
-            minList.append(i)
-            break
 
-    #2. 이전단어의 마지막 단어와 다음단어의 첫번째 단어가 다를 때
-    for i in range(1, len(words)):
-        # print('words[i][0]',i,words[i])
-        if words[i][0] != words[i - 1][-1]:
-            minList.append(i)
-            break
 
-    #3. 같은 단어 말했을 때
-    for i in range(len(words)-1):
-        wordsI = words[i]
-        # print('i와 wordsI',i,wordsI)
-        for k in range(i+1,len(words)):
-            # print('k i+1,words[k]','k',k,'i',i,words[k])
-            if words[k] == wordsI:
-                minList.append(k)
-                break
-    if len(minList) == 0:
-        answer = [0,0]
-        # return print(answer)
-    else:
-        minIndex = min(minList)
-        # 가장 작은인덱스 어펜드
-        answer.append(people[minIndex])
-        answer.append(index[minIndex])
-        # return print(answer)
-    return answer
-solution(n,words)
+
+
+
+
+
+
+
+#
+# def solution(n, words):
+#     answer = []#정답들어가는 list
+#     people = []#사람순서 list
+#     index = []#몇바퀴째인지 list
+#     minList = []#가장 작은 인덱스의 정답을 출력할 list
+#     kIndex=0
+#     # 사람순서
+#     for i in range(n):
+#         people.append(i+1)
+#     for i in range(n,len(words)):
+#         people.append(people[i-n])
+#     # 인덱스
+#     k = 0
+#     for i in range(1, len(words) + 1):
+#         if i == len(words)+1:
+#             break
+#         if i > n and i % n == 1:
+#             k += 1
+#         index.append(1 + k)
+#
+#     #1. 단어의 길이가 1일 때, pass
+#     for i in range(len(words)):
+#         if len(words[i])==1:
+#             minList.append(i)
+#             break
+#
+#     #2. 이전단어의 마지막 단어와 다음단어의 첫번째 단어가 다를 때
+#     for i in range(1, len(words)):
+#         # print('words[i][0]',i,words[i])
+#         if words[i][0] != words[i - 1][-1]:
+#             minList.append(i)
+#             break
+#
+#     #3. 같은 단어 말했을 때
+#     for i in range(len(words)-1):
+#         wordsI = words[i]
+#         # print('i와 wordsI',i,wordsI)
+#         for k in range(i+1,len(words)):
+#             # print('k i+1,words[k]','k',k,'i',i,words[k])
+#             if words[k] == wordsI:
+#                 minList.append(k)
+#                 break
+#     if len(minList) == 0:
+#         answer = [0,0]
+#         # return print(answer)
+#     else:
+#         minIndex = min(minList)
+#         # 가장 작은인덱스 어펜드
+#         answer.append(people[minIndex])
+#         answer.append(index[minIndex])
+#         # return print(answer)
+#     return answer
+# solution(n,words)
