@@ -24,31 +24,64 @@
 # 모든 아파트에 전파를 전달하기 위해 증설해야 할 기지국 개수의 최솟값을 리턴하는 solution 함수를 완성해주세요
 # N	stations	W	answer
 # 11	[4, 11]	1	3
-from collections import deque
+import math
 
-# N = 15
-# stations = [4,11,15]
-# w = 1
-N = 16
-stations = [9]
-w = 2
+N = 15
+stations = [4,11,15]
+w = 1
+#답 = 3
 
-
-from math import ceil
-
-
-def solution(n, stations, w):
+# N = 16
+# stations = [9]
+# w = 2
+#답 = 3
+def solution(N,stations,w):
+    W = w*2 +1
+    #정답
     answer = 0
-    W = 2 * w + 1
-
     start = 1
-    for s in stations:
-        answer += max(ceil((s - w - start) / W), 0)#기지국이 붙어있는경우 음수가 나올 가능성이 있어 0과 max로 비교해준다.
+    #있는위치 갱신
+    for s in stations:#기지국이 1,2,3,...이런식으로 설치 된 경우때문에 for문안에서 max(0,)과 비교해주어야한다.(밖으로 빼서 초기값 설정 ㄴㄴ)
+        s = max(0,math.ceil((s - start -w) / W))
+
+        #마지막 설치한 곳에서 +w+1칸 위치로 이동
         start = s + w + 1
-
-    if n >= start:
-        answer += ceil((n - start + 1) / W)
-
+    #마지막
+    if start <= N:
+        s = math.ceil((N-start+1)/W)
+        answer += s
     return answer
 
-print(solution(N, stations, w))
+print(solution(N,stations,w))
+
+
+
+
+
+
+
+
+
+
+
+#
+#
+#
+# from math import ceil
+#
+#
+# def solution(n, stations, w):
+#     answer = 0
+#     W = 2 * w + 1
+#
+#     start = 1
+#     for s in stations:
+#         answer += max(ceil((s - w - start) / W), 0)#기지국이 붙어있는경우 음수가 나올 가능성이 있어 0과 max로 비교해준다.
+#         start = s + w + 1
+#
+#     if n >= start:
+#         answer += ceil((n - start + 1) / W)
+#
+#     return answer
+#
+# print(solution(N, stations, w))
