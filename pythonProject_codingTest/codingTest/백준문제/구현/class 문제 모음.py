@@ -1,6 +1,5 @@
 # 별그리기 문제
-import math
-from collections import deque
+# import math
 # from sys import stdin
 # <code>---------------------------------------------------------------------
 # n = int(stdin.readline())
@@ -899,8 +898,211 @@ from collections import deque
 # 예제 출력 1
 # 4
 # <code>---------------------------------------------------------------------
+# from sys import stdin
+# import math
+# n,m,v = map(int, stdin.readline().split())
+# answer=math.ceil((v-n)/(n-m))
+# print(answer+1)
+
+
+# new============================================================================================================
+# 문제
+# 세계는 균형이 잘 잡혀있어야 한다. 양과 음, 빛과 어둠 그리고 왼쪽 괄호와 오른쪽 괄호처럼 말이다.
+#
+# 정민이의 임무는 어떤 문자열이 주어졌을 때, 괄호들의 균형이 잘 맞춰져 있는지 판단하는 프로그램을 짜는 것이다.
+#
+# 문자열에 포함되는 괄호는 소괄호("()") 와 대괄호("[]")로 2종류이고, 문자열이 균형을 이루는 조건은 아래와 같다.
+#
+# 모든 왼쪽 소괄호("(")는 오른쪽 소괄호(")")와만 짝을 이뤄야 한다.
+# 모든 왼쪽 대괄호("[")는 오른쪽 대괄호("]")와만 짝을 이뤄야 한다.
+# 모든 오른쪽 괄호들은 자신과 짝을 이룰 수 있는 왼쪽 괄호가 존재한다.
+# 모든 괄호들의 짝은 1:1 매칭만 가능하다. 즉, 괄호 하나가 둘 이상의 괄호와 짝지어지지 않는다.
+# 짝을 이루는 두 괄호가 있을 때, 그 사이에 있는 문자열도 균형이 잡혀야 한다.
+# 정민이를 도와 문자열이 주어졌을 때 균형잡힌 문자열인지 아닌지를 판단해보자.
+#
+# 입력
+# 하나 또는 여러줄에 걸쳐서 문자열이 주어진다. 각 문자열은 영문 알파벳, 공백, 소괄호("( )") 대괄호("[ ]")등으로 이루어져 있으며, 길이는 100글자보다 작거나 같다. 각 줄은 마침표(".")로 끝난다.
+#
+# 입력의 종료조건으로 맨 마지막에 점 하나(".")가 들어온다.
+# 출력
+# 각 줄마다 해당 문자열이 균형을 이루고 있으면 "yes"를, 아니면 "no"를 출력한다.
+#
+# 예제 입력 1
+# So when I die (the [first] I will see in (heaven) is a score list).
+# [ first in ] ( first out ).
+# Half Moon tonight (At least it is better than no Moon at all].
+# A rope may form )( a trail in a maze.
+# Help( I[m being held prisoner in a fortune cookie factory)].
+# ([ (([( [ ] ) ( ) (( ))] )) ]).
+#  .
+# .
+#
+# 예제 출력 1
+# yes
+# yes
+# no
+# no
+# no
+# yes
+# yes
+# <code>---------------------------------------------------------------------
+# from sys import stdin
+# from collections import deque
+# while True:
+#     queue = deque()
+#     st = (stdin.readline().rstrip())
+#     answer = True
+#     if st =='.':
+#         break
+#
+#     for s in st:
+#
+#         if s == '(' or s =='[':
+#             queue.append(s)
+#
+#         elif s ==')':
+#             if not queue or queue[-1] == '[':
+#                 answer = False
+#                 break
+#             elif queue[-1] == '(':
+#                 queue.pop()
+#
+#         elif s == ']':
+#             if not queue or queue[-1] == '(':
+#                 answer = False
+#                 break
+#
+#             elif queue[-1] == '[':
+#                 queue.pop()
+#
+#     if answer == True and not queue:#answer가 true고 queue가 비어있으면 yes프린트
+#         print('yes')
+#     else:
+#         print('no')
+
+
+
+# new============================================================================================================
+# 문제
+# M이상 N이하의 소수를 모두 출력하는 프로그램을 작성하시오.
+#
+# 입력
+# 첫째 줄에 자연수 M과 N이 빈 칸을 사이에 두고 주어진다. (1 ≤ M ≤ N ≤ 1,000,000) M이상 N이하의 소수가 하나 이상 있는 입력만 주어진다.
+#
+# 출력
+# 한 줄에 하나씩, 증가하는 순서대로 소수를 출력한다.
+#
+# 예제 입력 1
+# 3 16
+# 예제 출력 1
+# 3
+# 5
+# 7
+# 11
+# 13
+# <code>---------------------------------------------------------------------
+# from sys import stdin
+# import math
+# n,m = map(int, stdin.readline().split())
+# for i in range(m-n+1):
+#     k=n+i
+#     answer = 1
+#     if k==1 or k==4 or k==6 or k==8:
+#         answer =0
+#     if k>=9:
+#         for l in range(2,math.trunc(math.sqrt(k))+1):
+#             # print('int(math.sqrt(k))',int(math.sqrt(k)))
+#             # print('l',l)
+#             if k%l==0:
+#                 answer = 0
+#                 break
+#     if answer == 1:
+#         print(k)
+
+#아래방법은 에라토스테네스의 체 방법인데 .. 메모리가 너무 커서 m=1000000인 경우 실행이 안된다.
+# graph = []
+# for i in range(2,m+1):
+#     graph.append(i)
+# i=0
+# for i in range(len(graph)-1):
+#     k = graph[i]
+#     for n1 in range(i + 1, len(graph)):
+#         if k != 1:
+#             if graph[n1] % k == 0:
+#                 graph[n1] = 1
+#
+# for i in range(len(graph)):
+#     if graph[i] < n:
+#         graph[i] = 1
+#
+# for i in graph:
+#     if i != 1:
+#         print(i)
+
+
+
+# new============================================================================================================
+# 2차원 평면 위의 점 N개가 주어진다. 좌표를 y좌표가 증가하는 순으로, y좌표가 같으면 x좌표가 증가하는 순서로 정렬한 다음 출력하는 프로그램을 작성하시오.
+#
+# 입력
+# 첫째 줄에 점의 개수 N (1 ≤ N ≤ 100,000)이 주어진다. 둘째 줄부터 N개의 줄에는 i번점의 위치 xi와 yi가 주어진다. (-100,000 ≤ xi, yi ≤ 100,000) 좌표는 항상 정수이고, 위치가 같은 두 점은 없다.
+#
+# 출력
+# 첫째 줄부터 N개의 줄에 점을 정렬한 결과를 출력한다.
+# <code>---------------------------------------------------------------------
+# from sys import stdin
+#
+# n = int(input())
+# ablist = []
+# for i in range(n):
+#     a,b = map(int,stdin.readline().split())
+#     ablist.append((a,b))
+# ablist.sort(key=lambda x: (x[1], x[0]))#2번째 원소로 정렬 후 , 두번째 원소의 값이 같으면 첫번째 원소로 정렬
+# for one in ablist:
+#     a,b = one
+#     print(a,b)
+
+# new============================================================================================================
+# 문제
+# 재원이는 한 도시의 시장이 되었다. 이 도시에는 도시를 동쪽과 서쪽으로 나누는 큰 일직선 모양의 강이 흐르고 있다.
+# 하지만 재원이는 다리가 없어서 시민들이 강을 건너는데 큰 불편을 겪고 있음을 알고 다리를 짓기로 결심하였다.
+# 강 주변에서 다리를 짓기에 적합한 곳을 사이트라고 한다. 재원이는 강 주변을 면밀히 조사해 본 결과 강의 서쪽에는 N개의 사이트가 있고
+# 동쪽에는 M개의 사이트가 있다는 것을 알았다. (N ≤ M)
+#
+# 재원이는 서쪽의 사이트와 동쪽의 사이트를 다리로 연결하려고 한다. (이때 한 사이트에는 최대 한 개의 다리만 연결될 수 있다.)
+# 재원이는 다리를 최대한 많이 지으려고 하기 때문에 서쪽의 사이트 개수만큼 (N개) 다리를 지으려고 한다. 다리끼리는 서로 겹쳐질 수 없다고 할 때
+# 다리를 지을 수 있는 경우의 수를 구하는 프로그램을 작성하라.
+# 예제 입력 1
+# 3
+# 2 2
+# 1 5
+# 13 29
+# 예제 출력 1
+# 1
+# 5
+# 67863915
+# <code>---------------------------------------------------------------------
 from sys import stdin
-import math
-n,m,v = map(int, stdin.readline().split())
-answer=math.ceil((v-n)/(n-m))
-print(answer+1)
+
+n = int(input())
+num = 0
+for i in range(n):
+    a,b = map(int, stdin.readline().split())
+    if a==b:
+        num = 1
+        print(num)
+        continue
+    k = b-(a-1)
+    print('k',k)
+    while True:
+        print('k', k)
+        if k ==1:
+            num +=1
+            print('num',num)
+            break
+        for i in range(1,k+1):
+            num += i
+            print('num',num)
+        k -=1
+    print(num)
+
