@@ -1082,27 +1082,114 @@
 # 5
 # 67863915
 # <code>---------------------------------------------------------------------
-from sys import stdin
+# from sys import stdin
+#
+# n = int(input())
+# for i in range(n):
+#     num = 1
+#     num_a = 1
+#     num_b = 1
+#     a,b = map(int, stdin.readline().split())
+#     k = b-a
+#     for i in range(1,k+1):
+#         num = num*i
+#     for i in range(1,a+1):
+#         num_a *= i
+#     for i in range(1,b+1):
+#         num_b *= i
+#     print(int(num_b/(num*num_a)))
+
+
+
+
+# new============================================================================================================
+# 문제
+# 상담원으로 일하고 있는 백준이는 퇴사를 하려고 한다.
+#
+# 오늘부터 N+1일째 되는 날 퇴사를 하기 위해서, 남은 N일 동안 최대한 많은 상담을 하려고 한다.
+#
+# 백준이는 비서에게 최대한 많은 상담을 잡으라고 부탁을 했고, 비서는 하루에 하나씩 서로 다른 사람의 상담을 잡아놓았다.
+#
+# 각각의 상담은 상담을 완료하는데 걸리는 기간 Ti와 상담을 했을 때 받을 수 있는 금액 Pi로 이루어져 있다.
+#
+# N = 7인 경우에 다음과 같은 상담 일정표를 보자.
+#
+#  	1일	2일	3일	4일	5일	6일	7일
+# Ti	3	5	1	1	2	4	2
+# Pi	10	20	10	20	15	40	200
+# 1일에 잡혀있는 상담은 총 3일이 걸리며, 상담했을 때 받을 수 있는 금액은 10이다. 5일에 잡혀있는 상담은 총 2일이 걸리며, 받을 수 있는 금액은 15이다.
+#
+# 상담을 하는데 필요한 기간은 1일보다 클 수 있기 때문에, 모든 상담을 할 수는 없다. 예를 들어서 1일에 상담을 하게 되면, 2일, 3일에 있는 상담은 할 수 없게 된다. 2일에 있는 상담을 하게 되면, 3, 4, 5, 6일에 잡혀있는 상담은 할 수 없다.
+#
+# 또한, N+1일째에는 회사에 없기 때문에, 6, 7일에 있는 상담을 할 수 없다.
+#
+# 퇴사 전에 할 수 있는 상담의 최대 이익은 1일, 4일, 5일에 있는 상담을 하는 것이며, 이때의 이익은 10+20+15=45이다.
+#
+# 상담을 적절히 했을 때, 백준이가 얻을 수 있는 최대 수익을 구하는 프로그램을 작성하시오.
+# 예제 입력 1
+# 7
+# 3 10
+# 5 20
+# 1 10
+# 1 20
+# 2 15
+# 4 40
+# 2 200
+# 예제 출력 1
+# 45
+# <code>---------------------------------------------------------------------
+# from sys import stdin
+# n = int(input())
+# graph = [[] for _ in range(n+1)]
+# maxlist = [0 for _ in range(n+1)]
+# for i in range(1,n+1):
+#     a,b = map(int, stdin.readline().split())
+#     if i+a-1<=n:
+#         graph[i+a-1].append((i,b))#i부터 세고 총 값이 b임을 나타냄
+#     else:
+#         continue
+# # print(graph)
+#
+# for i in range(1,len(graph)):
+#     one = graph[i]
+#     # print('i-----------------',i)
+#     # print('one',one)
+#     if len(one)==0:
+#         maxlist[i]=maxlist[i-1]
+#     for x,y in one:
+#         # print('xy',x,y)
+#         # print('maxlist[x-1]',maxlist[x-1])
+#         if maxlist[i] !=0:
+#             if maxlist[x-1]+y > maxlist[i]:
+#                 maxlist[i] = maxlist[x-1]+y
+#                 # print('maxlist',maxlist)
+#         else:
+#             if maxlist[x-1]+y > maxlist[i-1]:
+#                 maxlist[i] = maxlist[x-1]+y
+#                 # print('maxlist',maxlist)
+#
+#             else:
+#                 maxlist[i] = maxlist[i-1]
+#                 # print('maxlist',maxlist)
+# print(maxlist[-1])
+
+
+
+
 
 n = int(input())
-num = 0
-for i in range(n):
-    a,b = map(int, stdin.readline().split())
-    if a==b:
-        num = 1
-        print(num)
-        continue
-    k = b-(a-1)
-    print('k',k)
-    while True:
-        print('k', k)
-        if k ==1:
-            num +=1
-            print('num',num)
-            break
-        for i in range(1,k+1):
-            num += i
-            print('num',num)
-        k -=1
-    print(num)
-
+n1 = 1
+n2 = 2
+if n==1:
+    print(n1)
+elif n==2:
+    print(n2)
+else:
+    for i in range(n-2):
+        if n1> 15746 and n2>15746:
+            n1 = n1%15746
+            n2 = n2%15746
+        num = n1 + n2
+        n1 = n2
+        n2 = num
+    print(num%15746)
