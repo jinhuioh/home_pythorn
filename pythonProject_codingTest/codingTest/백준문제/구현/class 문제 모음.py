@@ -1175,21 +1175,40 @@
 
 
 
+# new============================================================================================================
 
+# <code>---------------------------------------------------------------------
+
+# n = int(input())
+# n1 = 1
+# n2 = 2
+# if n==1:
+#     print(n1)
+# elif n==2:
+#     print(n2)
+# else:
+#     for i in range(n-2):
+#         if n1> 15746 and n2>15746:
+#             n1 = n1%15746
+#             n2 = n2%15746
+#         num = n1 + n2
+#         n1 = n2
+#         n2 = num
+#     print(num%15746)
+
+
+
+# new============================================================================================================
+# 보물
+# <code>---------------------------------------------------------------------
+from sys import stdin
 
 n = int(input())
-n1 = 1
-n2 = 2
-if n==1:
-    print(n1)
-elif n==2:
-    print(n2)
-else:
-    for i in range(n-2):
-        if n1> 15746 and n2>15746:
-            n1 = n1%15746
-            n2 = n2%15746
-        num = n1 + n2
-        n1 = n2
-        n2 = num
-    print(num%15746)
+a = list(map(int,(stdin.readline().split())))
+b = list(map(int,(stdin.readline().split())))
+answer = 0
+while a:
+    answer += max(b)*min(a)
+    a.remove(min(a))
+    b.remove(max(b))
+print(answer)
