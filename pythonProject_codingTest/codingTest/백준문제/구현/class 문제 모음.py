@@ -1287,5 +1287,4 @@ answer = 0
 i=0
 queue = deque(m)
 while queue:
-    #마지막이 범위를 넘으면 break
-
+    #마지막이 범위를 넘으면 break.
